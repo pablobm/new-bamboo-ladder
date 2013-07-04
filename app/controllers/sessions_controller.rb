@@ -8,6 +8,6 @@ class SessionsController < ApplicationController
   protected
 
   def auth_hash
-    request.env.tap_pp['omniauth.auth']
+    request.env['omniauth.auth']
   end
 end
