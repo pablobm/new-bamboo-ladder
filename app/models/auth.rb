@@ -19,4 +19,13 @@ class Auth
     new(user)
   end
 
+  def self.load(dump)
+    user = User.find_by_id(dump[:user_id]) if dump
+    new(user)
+  end
+
+  def dump
+    user ? {user_id: user.id} : {}
+  end
+
 end

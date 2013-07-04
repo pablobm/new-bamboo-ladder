@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    @current_user = Auth.from_auth_hash(auth_hash).user
+    session[:auth] = Auth.from_auth_hash(auth_hash).dump
     redirect_to root_path
   end
 

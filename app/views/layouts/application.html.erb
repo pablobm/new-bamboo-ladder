@@ -8,6 +8,12 @@
 </head>
 <body>
 
+<% if current_user %>
+  <p>You are <%= current_user.name %></p>
+<% else %>
+  <p><%= link_to "Log in", login_path %></p>
+<% end %>
+
 <%= yield %>
 
 </body>
