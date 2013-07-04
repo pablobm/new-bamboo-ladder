@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130704214038) do
+ActiveRecord::Schema.define(version: 20130704232203) do
+
+  create_table "results", force: true do |t|
+    t.integer "winner_id"
+    t.integer "loser_id"
+  end
 
   create_table "users", force: true do |t|
     t.string "google_uid"
