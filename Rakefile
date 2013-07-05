@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Ladder::Application.load_tasks
+LadderApp::Application.load_tasks

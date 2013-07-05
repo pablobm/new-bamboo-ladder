@@ -1,4 +1,4 @@
-Ladder::Application.routes.draw do
+LadderApp::Application.routes.draw do
   root 'players#index'
 
   get '/auth/:provider/callback', to: 'sessions#create'
