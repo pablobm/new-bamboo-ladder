@@ -1,0 +1,29 @@
+alice:
+  google_uid: aaa
+  email: alice@new-bamboo.co.uk
+  name: Alice
+  position: 1
+
+bob:
+  google_uid: bbb
+  email: bob@new-bamboo.co.uk
+  name: Bob
+  position: 2
+
+carol:
+  google_uid: ccc
+  email: carol@new-bamboo.co.uk
+  name: Carol
+  position: 3
+
+dan:
+  google_uid: ddd
+  email: dan@new-bamboo.co.uk
+  name: Dan
+  position: 4
+
+erin:
+  google_uid: eee
+  email: erin@new-bamboo.co.uk
+  name: Erin
+  position: 5
