@@ -1,7 +1,7 @@
 LadderApp::Application.routes.draw do
   root 'players#index'
 
-  get '/auth/:provider/callback', to: 'sessions#create'
+  match '/auth/:provider/callback', to: 'sessions#create', via: %w{get post}
 
   resources :players, only: [:index]
   resources :results, only: [:index, :create]
