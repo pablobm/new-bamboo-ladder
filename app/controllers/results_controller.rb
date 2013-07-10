@@ -4,7 +4,7 @@ class ResultsController < ApplicationController
   end
 
   def create
-    @result = Result.create(result_params)
+    Result.create!(result_params)
     redirect_to :back
   end
 

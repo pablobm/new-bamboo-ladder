@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
   def index
-    @players = User.all
+    @players = User.in_order
   end
 end
