@@ -15,7 +15,7 @@
     <p><%= f.select(:winner_id, players_as_options) %> beat <%= f.select(:loser_id, players_as_options) %> <%= f.submit "Submit" %></p>
   <% end %>
 <% else %>
-  <p><%= link_to "Log in", login_path %></p>
+  <p><%= link_to "Log in", login_path, 'data-no-turbolink' => true %></p>
 <% end %>
 
 <p><%= link_to "Ladder", players_path %></p>
