@@ -4,7 +4,7 @@ class LadderTest < ActiveSupport::TestCase
 
   def resolve_result(winner, loser)
     result = Result.create!(winner: users(winner), loser: users(loser))
-    #@ladder.resolve(result)
+    @ladder.resolve(result)
   end
 
   def assert_ladder(*expected_order)

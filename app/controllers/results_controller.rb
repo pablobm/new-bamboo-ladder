@@ -4,7 +4,8 @@ class ResultsController < ApplicationController
   end
 
   def create
-    Result.create!(result_params)
+    result = Result.create!(result_params)
+    Ladder.instance.resolve(result)
     redirect_to :back
   end
 
