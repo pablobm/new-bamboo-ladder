@@ -13,7 +13,7 @@ class LadderTest < ActiveSupport::TestCase
 
 
   def setup
-    @ladder = Ladder.new
+    @ladder = Ladder.instance
   end
 
 

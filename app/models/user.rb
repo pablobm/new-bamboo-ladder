@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   before_validation :reset_position, on: :create
 
+  def self.in_order
+    User.order('position')
+  end
 
   protected
 

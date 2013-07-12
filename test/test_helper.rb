@@ -17,3 +17,12 @@ end
 def random_str(length = 8)
   (0...(length-1)).map{ ('a'..'z').to_a[rand(26)] }.join
 end
+
+#
+# Rails
+#
+require 'capybara/rails'
+class CapybaraTestCase < ActionDispatch::IntegrationTest
+  include Capybara::DSL
+end
+

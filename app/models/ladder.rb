@@ -1,4 +1,6 @@
 class Ladder
+  include Singleton
+
   def resolve(result)
     User.transaction do
       transaction(result)

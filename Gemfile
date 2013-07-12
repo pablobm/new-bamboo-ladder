@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'rails_12factor'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'capybara'
 
 group :production do
   gem 'pg'
