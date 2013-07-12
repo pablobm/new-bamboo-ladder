@@ -1,8 +1,9 @@
 LadderApp::Application.routes.draw do
-  root 'players#index'
+  root 'homes#show'
 
   match '/auth/:provider/callback', to: 'sessions#create', via: %w{get post}
 
+  resource :home, only: [:show]
   resources :players, only: [:index]
   resources :results, only: [:index, :create]
   # The priority is based upon order of creation: first created -> highest priority.
