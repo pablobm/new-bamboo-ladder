@@ -6,20 +6,21 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body><div id="body">
+
+<div id="navbar-wrap"><div id="navbar">
+  <p class="link ladder-link <%= current_if_section 'players' %>"><%= link_to "Ladder", players_path %></p>
+  <p class="link results-link <%= current_if_section 'results' %>"><%= link_to "Past results", results_path %></p>
+  <% if current_user %>
+    <%= form_for @result, html: {class: 'result-form'} do |f| %>
+      <p><%= f.select(:winner_id, players_as_options) %> beat <%= f.select(:loser_id, players_as_options) %> <%= f.submit "Submit" %></p>
+    <% end %>
+  <% else %>
+    <p class="link login-link"><%= link_to "Log in", login_path, 'data-no-turbolink' => true %></p>
+  <% end %>
+</div></div>
 
 <%= yield %>
 
-<% if current_user %>
-  <%= form_for @result do |f| %>
-    <p><%= f.select(:winner_id, players_as_options) %> beat <%= f.select(:loser_id, players_as_options) %> <%= f.submit "Submit" %></p>
-  <% end %>
-<% else %>
-  <p><%= link_to "Log in", login_path, 'data-no-turbolink' => true %></p>
-<% end %>
-
-<p><%= link_to "Ladder", players_path %></p>
-<p><%= link_to "Results", results_path %></p>
-
-</body>
+</div></body>
 </html>

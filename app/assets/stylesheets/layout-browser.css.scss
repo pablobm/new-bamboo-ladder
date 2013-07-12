@@ -1,0 +1,58 @@
+@import "mixins/dimensions";
+
+/*
+ * For font sizes, see http://www.alistapart.com/articles/howtosizetextincss/
+ */
+body {
+  line-height: 1.5em;  /* 24px */
+  font-family: Helvetica, 'bitstream vera sans serif', 'lucida grande', Arial, sans-serif;
+}
+h1, h2, p, ul, ol, dl, table {
+  margin-bottom: 1.5em;
+}
+
+body {
+  margin: 0;
+}
+
+#body {
+}
+
+#navbar-wrap {
+  background: black;
+}
+#navbar {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: $page-max-width;
+  height: 2em;
+  vertical-align: middle;
+
+  .link {
+    flex: 1;
+    height: 100%;
+    border-left: 1px solid white;
+    text-align: center;
+  }
+  .link:last-child {
+    border-right: 1px solid white;
+  }
+  .link a {
+    display: block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding-top: 3px;
+    text-decoration: none;
+    color: white;
+  }
+  .link.is-current {
+    background: white;
+    a {
+      color: black;
+    }
+  }
+}
