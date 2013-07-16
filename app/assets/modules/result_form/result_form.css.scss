@@ -1,0 +1,36 @@
+.result-form {
+  padding-top: 1.5em;
+  background: #ddd;
+
+  .row {
+    display: flex;
+  }
+  .row p {
+    flex: 1;
+  }
+  .row:last-child p {
+    flex: 2;
+  }
+  .row p {
+    padding-left: .5em;
+  }
+  .row p:first-child {
+    padding: 0 .5em 0 0;
+    text-align: right;
+  }
+  .row:last-child p {
+    text-align: center;
+  }
+}
+
+/*
+ * States
+ */
+.result-form.is-hidden {
+  height: 0;
+  overflow: hidden;
+}
+
+.result-form {
+  height: 100%;
+}

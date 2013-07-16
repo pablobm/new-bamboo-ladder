@@ -12,15 +12,28 @@
   <p class="link ladder-link <%= current_if_section 'players' %>"><%= link_to "Ladder", players_path %></p>
   <p class="link results-link <%= current_if_section 'results' %>"><%= link_to "Past results", results_path %></p>
   <% if current_user %>
-    <%= form_for @result, html: {class: 'result-form'} do |f| %>
-      <p><%= f.select(:winner_id, players_as_options) %> beat <%= f.select(:loser_id, players_as_options) %> <%= f.submit "Submit" %></p>
-    <% end %>
+    <p class="link result-form-link"><%= link_to "New result", '#' %></p>
   <% else %>
     <p class="link login-link"><%= link_to "Log in", login_path, 'data-no-turbolink' => true %></p>
   <% end %>
 </div></div>
 
 <div id="content-wrap"><div id="content">
+  <% if current_user %>
+    <%= form_for @result, html: {class: 'result-form'} do |f| %>
+      <div class="row">
+        <p><%= f.label :winner_id, "Winner:" %></p>
+        <p><%= f.select(:winner_id, players_as_options) %></p>
+      </div>
+      <div class="row">
+        <p><%= f.label :loser_id, "Second best:" %></p>
+        <p><%= f.select(:loser_id, players_as_options) %></p>
+      </div>
+      <div class="row">
+        <p><%= f.submit "May the ladder update!" %></p>
+      </div>
+    <% end %>
+  <% end %>
   <%= yield %>
 </div></div>
 
