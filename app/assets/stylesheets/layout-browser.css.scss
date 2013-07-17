@@ -59,3 +59,16 @@ body {
     }
   }
 }
+
+#content .flash {
+  border: 1px solid;
+  padding: .5em;
+  margin: .5em;
+  text-align: center;
+
+  &.flash-error {
+    background: #FBE3E4;
+    color: #8a1f11;
+    border-color: #FBC2C4;
+  }
+}

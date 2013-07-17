@@ -4,6 +4,9 @@ class SessionsController < ApplicationController
 
   def create
     session[:auth] = Auth.from_auth_hash(auth_hash).dump
+  rescue Auth::InvalidUser
+    flash[:error] = "Sorry, only addresses @new-bamboo are allowed"
+  ensure
     redirect_to root_path
   end
 

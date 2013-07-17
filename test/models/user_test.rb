@@ -15,6 +15,13 @@ class UserTest < ActiveSupport::TestCase
     assert u2.errors[:position], "The position should have an error"
   end
 
+  test "must be from New Bamboo" do
+    bad = User.create(random_attrs.merge(email: 'pablo@bamboo-new.co.uk'))
+    good = User.create(random_attrs.merge(email: 'pablo@new-bamboo.co.uk'))
+    refute bad.valid?, "Users must be from New Bamboo"
+    assert good.valid?, "Users from New Bamboo are welcome"
+  end
+
 
   private
 

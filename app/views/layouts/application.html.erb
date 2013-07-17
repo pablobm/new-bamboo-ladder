@@ -19,6 +19,12 @@
 </div></div>
 
 <div id="content-wrap"><div id="content">
+  <% if flash.present? %>
+    <% flash.each do |type, msg| %>
+      <p class="flash flash-<%= type %>"><%= msg %></p>
+    <% end %>
+  <% end %>
+
   <% if current_user %>
     <%= render 'layouts/result_form' %>
   <% end %>

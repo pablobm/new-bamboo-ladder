@@ -1,5 +1,7 @@
 class Auth
 
+  class InvalidUser < StandardError; end
+
   attr_reader :user
 
   def initialize(user)
@@ -17,6 +19,8 @@ class Auth
       })
 
     new(user)
+  rescue ActiveRecord::RecordInvalid
+    raise Auth::InvalidUser
   end
 
   def self.load(dump)
