@@ -1,4 +1,5 @@
-<% @results.each do |result| %>
-  <p><%= result.winner.name %> beat <%= result.loser.name %></p>
-<% end %>
-
+<ol class="results">
+  <% @results.each do |result| %>
+    <li><%= result.winner.name %> beat <%= result.loser.name %></li>
+  <% end %>
+</ol>

@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
   def index
-    @results = Result.all
+    @results = Result.latest_first
   end
 
   def create

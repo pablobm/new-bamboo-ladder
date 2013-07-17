@@ -7,6 +7,12 @@ class Result < ActiveRecord::Base
   validates :loser, presence: true
   validate :winner_different_from_loser
 
+
+  def self.latest_first
+    self.order('id DESC')
+  end
+
+
   private
 
   def winner_different_from_loser
