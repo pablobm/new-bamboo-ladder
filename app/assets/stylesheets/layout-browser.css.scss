@@ -27,13 +27,16 @@ body {
   background: black;
 }
 #navbar {
-  display: flex;
-  justify-content: center;
+  display: table;
   height: 2em;
   vertical-align: middle;
 
+  #navbar-inside {
+    display: table-row;
+  }
   .link {
-    flex: 1;
+    display: table-cell;
+    width: $page-max-width/3;
     height: 100%;
     border-left: 1px solid white;
     text-align: center;
