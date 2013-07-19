@@ -1,21 +1,22 @@
 INITIAL_LADDER = <<EOL
+tom
+samuel
+ismael
 mark
 olly
-tom
-ollie
-ismael
+ben
+oliver.n
 laurie
-vivien
 dan
 claudio
-niall
-gwyn
-joe
-oscar
+vivien
 tony
+gwyn
+oscar
+joe
+niall
 pablo
 lee
-damon
 EOL
 
 User.update_all(position: nil)
