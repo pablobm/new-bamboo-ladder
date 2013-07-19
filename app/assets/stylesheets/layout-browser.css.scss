@@ -15,12 +15,16 @@ body {
   margin: 0;
 }
 
-#body {
+#navbar, #content {
+  max-width: $desktop-max-width;
+  width: 100%;
+  margin: 0 auto;
 }
 
-#navbar, #content {
-  max-width: $page-max-width;
-  margin: 0 auto;
+@media all and (max-width: 600px) {
+  #navbar, #content {
+    max-width: 100%;
+  }
 }
 
 #navbar-wrap {
@@ -36,7 +40,6 @@ body {
   }
   .link {
     display: table-cell;
-    width: $page-max-width/3;
     height: 100%;
     border-left: 1px solid white;
     text-align: center;

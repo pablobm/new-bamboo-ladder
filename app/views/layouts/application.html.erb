@@ -2,13 +2,14 @@
 <html>
 <head>
   <title>Ladder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body><div id="body">
 
-<div id="navbar-wrap"><div id="navbar">
+<div id="navbar-wrap"><div id="navbar"><div id="navbar-inside">
   <p class="link ladder-link <%= current_if_section 'players' %>"><%= link_to "Ladder", players_path %></p>
   <p class="link results-link <%= current_if_section 'results' %>"><%= link_to "Past results", results_path %></p>
   <% if current_user %>
@@ -16,7 +17,7 @@
   <% else %>
     <p class="link login-link"><%= link_to "Log in", login_path, 'data-no-turbolink' => true %></p>
   <% end %>
-</div></div>
+</div></div></div>
 
 <div id="content-wrap"><div id="content">
   <% if flash.present? %>
