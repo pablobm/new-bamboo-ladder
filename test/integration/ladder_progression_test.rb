@@ -6,30 +6,22 @@ class LadderProgressionTest < CapybaraTestCase
     names = all('.ladder-player').map(&:text)
     assert_equal ['Alice', 'Bob', 'Carol', 'Dan', 'Erin'], names
 
-    select "Alice", from: 'result[winner_id]'
-    select "Carol", from: 'result[loser_id]'
-    click_button "Submit"
+    submit_result("Alice", "Carol")
 
     names = all('.ladder-player').map(&:text)
     assert_equal ['Alice', 'Bob', 'Carol', 'Dan', 'Erin'], names
 
-    select "Carol", from: 'result[winner_id]'
-    select "Bob", from: 'result[loser_id]'
-    click_button "Submit"
+    submit_result("Carol", "Bob")
 
     names = all('.ladder-player').map(&:text)
     assert_equal ['Alice', 'Carol', 'Bob', 'Dan', 'Erin'], names
 
-    select "Dan", from: 'result[winner_id]'
-    select "Carol", from: 'result[loser_id]'
-    click_button "Submit"
+    submit_result("Dan", "Carol")
 
     names = all('.ladder-player').map(&:text)
     assert_equal ['Alice', 'Dan', 'Bob', 'Carol', 'Erin'], names
 
-    select "Erin", from: 'result[winner_id]'
-    select "Alice", from: 'result[loser_id]'
-    click_button "Submit"
+    submit_result("Erin", "Alice")
 
     names = all('.ladder-player').map(&:text)
     assert_equal ['Dan', 'Alice', 'Bob', 'Erin', 'Carol'], names
@@ -40,5 +32,13 @@ class LadderProgressionTest < CapybaraTestCase
     click_link "Log in"
     fill_in "Email", with: User.first.email
     click_button "Log in"
+  end
+
+  def submit_result(winner, loser)
+    select winner, from: 'result[winner_id]'
+    select loser, from: 'result[loser_id]'
+    within '.result-form' do
+      find('[type=submit]').click
+    end
   end
 end
