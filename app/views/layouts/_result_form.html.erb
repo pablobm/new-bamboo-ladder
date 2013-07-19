@@ -1,13 +1,15 @@
 <%= form_for @result, html: {class: 'result-form'} do |f| %>
-  <div class="row">
-    <p><%= f.label :winner_id, "Winner:" %></p>
-    <p><%= f.select(:winner_id, players_as_options) %></p>
+  <div class="table">
+    <div class="row">
+      <p><%= f.label :winner_id, "Winner:" %></p>
+      <p><%= f.select(:winner_id, players_as_options) %></p>
+    </div>
+    <div class="row">
+      <p><%= f.label :loser_id, "Second best:" %></p>
+      <p><%= f.select(:loser_id, players_as_options) %></p>
+    </div>
   </div>
-  <div class="row">
-    <p><%= f.label :loser_id, "Second best:" %></p>
-    <p><%= f.select(:loser_id, players_as_options) %></p>
-  </div>
-  <div class="row">
+  <div class="submit">
     <p><%= f.submit "May the ladder update!" %></p>
   </div>
 <% end %>
