@@ -37,6 +37,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'taps'
 end
 
 group :doc do
