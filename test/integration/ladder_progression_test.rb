@@ -3,27 +3,27 @@ require 'test_helper'
 class LadderProgressionTest < CapybaraTestCase
   test "moving up and down the ladder" do
     login
-    names = all('.ladder-player').map(&:text)
+    names = all('.ladder-entry').map(&:text)
     assert_equal ['Alice', 'Bob', 'Carol', 'Dan', 'Erin'], names
 
     submit_result("Alice", "Carol")
 
-    names = all('.ladder-player').map(&:text)
+    names = all('.ladder-entry').map(&:text)
     assert_equal ['Alice', 'Bob', 'Carol', 'Dan', 'Erin'], names
 
     submit_result("Carol", "Bob")
 
-    names = all('.ladder-player').map(&:text)
+    names = all('.ladder-entry').map(&:text)
     assert_equal ['Alice', 'Carol', 'Bob', 'Dan', 'Erin'], names
 
     submit_result("Dan", "Carol")
 
-    names = all('.ladder-player').map(&:text)
+    names = all('.ladder-entry').map(&:text)
     assert_equal ['Alice', 'Dan', 'Bob', 'Carol', 'Erin'], names
 
     submit_result("Erin", "Alice")
 
-    names = all('.ladder-player').map(&:text)
+    names = all('.ladder-entry').map(&:text)
     assert_equal ['Dan', 'Alice', 'Bob', 'Erin', 'Carol'], names
   end
 
