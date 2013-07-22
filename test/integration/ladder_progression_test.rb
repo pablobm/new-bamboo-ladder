@@ -3,28 +3,23 @@ require 'test_helper'
 class LadderProgressionTest < CapybaraTestCase
   test "moving up and down the ladder" do
     login
-    names = all('.ladder-entry').map(&:text)
-    assert_equal ['Alice', 'Bob', 'Carol', 'Dan', 'Erin'], names
+    assert_equal ['Alice', 'Bob', 'Carol', 'Dan', 'Erin'], ladder_names
 
     submit_result("Alice", "Carol")
 
-    names = all('.ladder-entry').map(&:text)
-    assert_equal ['Alice', 'Bob', 'Carol', 'Dan', 'Erin'], names
+    assert_equal ['Alice', 'Bob', 'Carol', 'Dan', 'Erin'], ladder_names
 
     submit_result("Carol", "Bob")
 
-    names = all('.ladder-entry').map(&:text)
-    assert_equal ['Alice', 'Carol', 'Bob', 'Dan', 'Erin'], names
+    assert_equal ['Alice', 'Carol', 'Bob', 'Dan', 'Erin'], ladder_names
 
     submit_result("Dan", "Carol")
 
-    names = all('.ladder-entry').map(&:text)
-    assert_equal ['Alice', 'Dan', 'Bob', 'Carol', 'Erin'], names
+    assert_equal ['Alice', 'Dan', 'Bob', 'Carol', 'Erin'], ladder_names
 
     submit_result("Erin", "Alice")
 
-    names = all('.ladder-entry').map(&:text)
-    assert_equal ['Dan', 'Alice', 'Bob', 'Erin', 'Carol'], names
+    assert_equal ['Dan', 'Alice', 'Bob', 'Erin', 'Carol'], ladder_names
   end
 
   def login
@@ -40,5 +35,9 @@ class LadderProgressionTest < CapybaraTestCase
     within '.result-form' do
       find('[type=submit]').click
     end
+  end
+
+  def ladder_names
+    all('.ladder-name').map(&:text)
   end
 end

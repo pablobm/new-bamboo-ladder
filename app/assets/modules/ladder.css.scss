@@ -2,14 +2,19 @@
 
 .ladder {
   li {
-    color: $color-text-subdued;
+    position: relative;
+    width: 100%;
     border-bottom: 1px solid #ccc;
     line-height: 3em;
     padding: 0 .5em;
-    list-style: decimal inside;
+    list-style: none;
+    text-align: center;
   }
-  .ladder-name {
-    color: $color-text;
+  .ladder-position {
+    position: absolute;
+    left: 1em;
+    font-size: 2em;
+    font-family: Georgia, sans-serif;
+    color: $color-text-subdued;
   }
-
 }

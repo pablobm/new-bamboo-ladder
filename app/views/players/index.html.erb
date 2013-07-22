@@ -1,5 +1,5 @@
 <ol class="ladder">
   <% @players.each do |player| %>
-    <li class="ladder-entry"><span class="ladder-name"><%= player.name %></span></li>
+    <li class="ladder-entry"><span class="ladder-position"><%= player.position+1 %>.</span> <span class="ladder-name"><%= player.name %></span></li>
   <% end %>
 </ol>
