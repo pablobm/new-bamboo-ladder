@@ -70,15 +70,16 @@ body {
   }
 }
 
-#content .flash {
-  border: 1px solid;
-  padding: .5em;
-  margin: .5em;
-  text-align: center;
-
-  &.flash-error {
-    background: #FBE3E4;
-    color: #8a1f11;
-    border-color: #FBC2C4;
+#flash {
+  .flash-msg {
+    padding: .8em;
+    margin-bottom: 1em;
+    border: 2px solid #ddd;
+    border-width: 2px 0;
+    text-align: center;
   }
+  .syserror, .error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
+  .notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
+  .success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
+
 }

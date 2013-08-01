@@ -5,8 +5,8 @@ class ResultsController < ApplicationController
 
   def create
     result = Result.create!(result_params)
-    Ladder.instance.resolve(result)
-    redirect_to :back
+    ladder.resolve(result)
+    redirect_to :back, notice: MessagePresenter.new_result_summary(result)
   end
 
 
@@ -14,5 +14,9 @@ class ResultsController < ApplicationController
 
   def result_params
     params.require(:result).permit(:winner_id, :loser_id)
+  end
+
+  def ladder
+    @ladder ||= Ladder.instance
   end
 end

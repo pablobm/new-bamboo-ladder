@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+
+  result:
+    summary: "%{winner} beat %{loser}"
