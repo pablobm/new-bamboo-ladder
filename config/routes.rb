@@ -5,7 +5,11 @@ LadderApp::Application.routes.draw do
 
   resource :home, only: [:show]
   resources :players, only: [:index]
-  resources :results, only: [:index, :create]
+  resources :results, only: [:index, :create, :destroy] do
+    collection do
+      get :undo
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

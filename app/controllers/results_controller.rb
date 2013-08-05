@@ -5,8 +5,19 @@ class ResultsController < ApplicationController
 
   def create
     result = Result.create!(result_params)
-    ladder.resolve(result)
-    redirect_to :back, notice: MessagePresenter.new_result_summary(result)
+    notice = MessagePresenter.new_result_summary(result) + render_to_string(inline: %{ <%= link_to "undo", undo_results_path %>})
+    redirect_to :back, notice: notice.html_safe
+  end
+
+  def undo
+    @result = Result.latest_first.first
+    pp @result.winner
+  end
+
+  def destroy
+    result = Result.find(params[:id])
+    result.destroy
+    redirect_to root_path, notice: "That result was deleted"
   end
 
 
@@ -16,7 +27,4 @@ class ResultsController < ApplicationController
     params.require(:result).permit(:winner_id, :loser_id)
   end
 
-  def ladder
-    @ladder ||= Ladder.instance
-  end
 end

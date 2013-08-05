@@ -24,5 +24,9 @@ end
 require 'capybara/rails'
 class CapybaraTestCase < ActionDispatch::IntegrationTest
   include Capybara::DSL
+
+  def setup
+    Capybara.reset_session!
+  end
 end
 
