@@ -1,0 +1,5 @@
+<%= form_for @result, method: :delete do |f| %>
+  <p>Are you sure you want to delete the latest result? (where <%= @result.winner_name %> beat <%= @result.loser_name %>)</p>
+  <p><%= f.submit "Yeah, that result a mistake" %></p>
+  <p><%= link_to "Actually, forget it. It's fine", root_path %></p>
+<% end %>

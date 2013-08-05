@@ -8,8 +8,9 @@ class UndoResultTest < CapybaraTestCase
     submit_result("Erin", "Alice")
     assert_ladder ['Bob', 'Alice', 'Carol', 'Erin', 'Dan']
     within '#flash' do
-      click_link "undo"
+      click_on "undo"
     end
+    click_on "Yeah"
     assert_ladder ['Alice', 'Bob', 'Carol', 'Dan', 'Erin']
   end
 

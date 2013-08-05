@@ -3,7 +3,23 @@ class Ladder
 
   def resolve(result)
     User.transaction do
+      result.previous_state = User.in_order.map(&:id)
+      result.save!
       transaction(result)
+    end
+  end
+
+  def undo(result)
+    User.transaction do
+      User.update_all(position: nil)
+      result.previous_state.each_with_index do |uid, i|
+        u = User.find(uid)
+        u.position = i
+        u.save!
+      end
+      Result.where('id > ?', result.id).order('id ASC').each do |r|
+        resolve(r)
+      end
     end
   end
 
@@ -15,7 +31,7 @@ class Ladder
   private
 
   def transaction(result)
-    positions = User.all.select(:id, :position).order('position ASC').map{|u| u.id }
+    positions = User.in_order.select(:id, :position).map{|u| u.id }
     winner = result.winner
     loser = result.loser
     winner_index = positions.index{|id| id == winner.id}
