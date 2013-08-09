@@ -29,7 +29,6 @@ gem 'jbuilder', '~> 1.2'
 gem 'rails_12factor'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-gem 'capybara'
 
 group :production do
   gem 'pg'
@@ -38,6 +37,10 @@ end
 group :development do
   gem 'sqlite3'
   gem 'taps'
+end
+
+group :development, :test do
+  gem 'capybara'
 end
 
 group :doc do
