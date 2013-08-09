@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   validates :google_uid, uniqueness: true, allow_nil: true
-  validates :email, presence: true, uniqueness: true, format: {with: %r{@new-bamboo\.co\.uk}i}
+  #validates :email, presence: true, uniqueness: true, format: {with: %r{@new-bamboo\.co\.uk}i}
   validates :name, presence: true
   validates :position, uniqueness: true
 
