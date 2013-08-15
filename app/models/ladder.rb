@@ -2,18 +2,18 @@ class Ladder
   include Singleton
 
   def resolve(result)
-    User.transaction do
-      result.previous_state = User.in_order.map(&:id)
+    Player.transaction do
+      result.previous_state = Player.in_order.map(&:id)
       result.save!
       transaction(result)
     end
   end
 
   def undo(result)
-    User.transaction do
-      User.update_all(position: nil)
+    Player.transaction do
+      Player.update_all(position: nil)
       result.previous_state.each_with_index do |uid, i|
-        u = User.find(uid)
+        u = Player.find(uid)
         u.position = i
         u.save!
       end
@@ -24,14 +24,14 @@ class Ladder
   end
 
   def players
-    User.where('position NOT NULL').order('position ASC')
+    Player.where('position NOT NULL').order('position ASC')
   end
 
 
   private
 
   def transaction(result)
-    positions = User.in_order.select(:id, :position).map{|u| u.id }
+    positions = Player.in_order.select(:id, :position).map{|u| u.id }
     winner = result.winner
     loser = result.loser
     winner_index = positions.index{|id| id == winner.id}
@@ -59,7 +59,7 @@ class Ladder
   def move_position(player, positions, diff)
     player_index = positions.index{|uid| uid == player.id }
     swapper_id = positions[player_index - diff]
-    if swapper = User.find_by_id(swapper_id)
+    if swapper = Player.find_by_id(swapper_id)
       swap_positions(player, swapper)
     end
   end
