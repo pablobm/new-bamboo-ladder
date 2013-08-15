@@ -10,6 +10,7 @@ class Result < ActiveRecord::Base
   serialize :previous_state, Array
 
   after_create :resolve_ladder
+  after_create :resolve_elo_ratings
   after_destroy :undo
 
   def self.latest_first
@@ -37,11 +38,19 @@ class Result < ActiveRecord::Base
     ladder.resolve(self)
   end
 
+  def resolve_elo_ratings
+    elo.resolve(self)
+  end
+
   def undo
     ladder.undo(self)
   end
 
   def ladder
     @ladder ||= Ladder.instance
+  end
+
+  def elo
+    @elo ||= EloRating.instance
   end
 end

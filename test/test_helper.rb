@@ -18,6 +18,11 @@ def random_str(length = 8)
   (0...(length-1)).map{ ('a'..'z').to_a[rand(26)] }.join
 end
 
+def resolve_result(winner, loser)
+  Result.create!(winner: players(winner), loser: players(loser))
+end
+
+
 #
 # Rails
 #
