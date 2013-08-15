@@ -3,11 +3,11 @@ require 'test_helper'
 class LadderTest < ActiveSupport::TestCase
 
   def resolve_result(winner, loser)
-    Result.create!(winner: users(winner), loser: users(loser))
+    Result.create!(winner: players(winner), loser: players(loser))
   end
 
   def assert_ladder(*expected_order)
-    assert_equal expected_order.map{|name| users(name).name }, Ladder.instance.players.map(&:name)
+    assert_equal expected_order.map{|name| players(name).name }, Ladder.instance.players.map(&:name)
   end
 
 

@@ -1,5 +1,5 @@
 module PlayersHelper
   def players_as_options
-    ['---'] + User.in_order.map{|u| [u.name, u.id] }
+    ['---'] + Player.in_order.map{|e| [e.name, e.id] }
   end
 end

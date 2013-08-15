@@ -1,0 +1,19 @@
+alice:
+  name: Alice
+  position: 1
+
+bob:
+  name: Bob
+  position: 2
+
+carol:
+  name: Carol
+  position: 3
+
+dan:
+  name: Dan
+  position: 4
+
+erin:
+  name: Erin
+  position: 5

@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130730224324) do
+ActiveRecord::Schema.define(version: 20130815083711) do
+
+  create_table "players", force: true do |t|
+    t.string  "name"
+    t.integer "position"
+  end
 
   create_table "results", force: true do |t|
     t.integer "winner_id"
@@ -20,10 +25,8 @@ ActiveRecord::Schema.define(version: 20130730224324) do
   end
 
   create_table "users", force: true do |t|
-    t.string  "google_uid"
-    t.string  "email"
-    t.string  "name"
-    t.integer "position"
+    t.string "google_uid"
+    t.string "email"
   end
 
 end
