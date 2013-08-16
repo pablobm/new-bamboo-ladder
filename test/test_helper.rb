@@ -19,7 +19,9 @@ def random_str(length = 8)
 end
 
 def resolve_result(winner, loser)
-  Result.create!(winner: players(winner), loser: players(loser))
+  w = winner.kind_of?(Symbol) ? players(winner) : winner
+  l = loser.kind_of?(Symbol) ? players(loser) : loser
+  Result.create!(winner: w, loser: l)
 end
 
 

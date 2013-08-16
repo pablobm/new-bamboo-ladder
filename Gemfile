@@ -30,6 +30,7 @@ gem 'rails_12factor'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'elo'
+gem 'delorean'
 
 group :production do
   gem 'pg'

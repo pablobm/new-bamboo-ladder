@@ -28,9 +28,6 @@ class Umpire
     replay_results!
   end
 
-
-  private
-
   def reset_elo_ratings!
     new_player = Elo::Player.new
     Player.update_all(elo_rating: new_player.rating)
@@ -50,6 +47,9 @@ class Umpire
       p.save!
     end
   end
+
+
+  private
 
   def replay_results!
     Result.all.each do |r|
