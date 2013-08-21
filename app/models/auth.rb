@@ -15,12 +15,11 @@ class Auth
       User.create!({
         google_uid: ri.uid,
         email: ri.info[:email],
-        name: ri.hash['info']['first_name'],
       })
 
     new(user)
   rescue ActiveRecord::RecordInvalid
-    raise Auth::InvalidUser
+    raise Auth::InvalidUser, "Can't recognise auth hash #{auth_hash.inspect}"
   end
 
   def self.load(dump)
