@@ -4,9 +4,9 @@ class ResultsController < ApplicationController
   end
 
   def create
-    result = Result.create!(result_params)
-    notice = MessagePresenter.new_result_summary(result) + render_to_string(inline: %{ <%= link_to "undo", undo_results_path %>})
-    redirect_to :back, notice: notice.html_safe
+    result = Result.create!(create_params)
+    flash[:display] = { result: {result_id: result.id} }
+    redirect_to :back
   end
 
   def undo
@@ -23,7 +23,7 @@ class ResultsController < ApplicationController
 
   private
 
-  def result_params
+  def create_params
     params.require(:result).permit(:winner_id, :loser_id)
   end
 

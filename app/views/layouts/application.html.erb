@@ -19,13 +19,7 @@
   <% end %>
 </div></div></div>
 
-<% if flash.present? %>
-  <div id="flash">
-    <% flash.each do |type, msg| %>
-      <p class="flash-msg <%= type %>"><%= msg %></p>
-    <% end %>
-  </div>
-<% end %>
+<%= render_flash %>
 
 <div id="content-wrap"><div id="content">
 
