@@ -6,7 +6,15 @@ class ResultFlash
   end
 
   def template
-    'flashes/result'
+    if @result.winner_previous_position == 1 &&
+       [2, 3].include?(@result.loser_previous_position)
+      'flashes/result/first_beats_second'
+    elsif @result.loser_previous_position == 1 &&
+       [2, 3].include?(@result.winner_previous_position)
+      'flashes/result/second_beats_first'
+    else
+      'flashes/result/standard'
+    end
   end
 
   def locals
