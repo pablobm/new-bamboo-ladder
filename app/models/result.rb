@@ -24,6 +24,10 @@ class Result < ActiveRecord::Base
     loser.try(:name)
   end
 
+  def loser_new_position
+    loser.try(:position)
+  end
+
   def winner_previous_position
     @winner_previous_position ||=
       previous_state.index(winner_id) + 1

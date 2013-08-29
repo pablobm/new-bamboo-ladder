@@ -1,0 +1,18 @@
+.flash-result {
+  p {
+    margin-bottom: 0;
+  }
+
+  .winner,
+  .loser {
+    display: block;
+  }
+  .winner {
+    text-align: left;
+    background: -moz-linear-gradient(  45deg, #00FF00 0%, #00FF00 60%, #FFFFFF 70%, #FFFFFF 100%)
+  }
+  .loser {
+    text-align: right;
+    background: -moz-linear-gradient(-135deg, #FF0000 0%, #FF0000 60%, #FFFFFF 70%, #FFFFFF 100%)
+  }
+}

@@ -16,6 +16,10 @@ module FlashHelper
     content_tag(:div, messages.join.html_safe, id: 'flash')
   end
 
+  def player(name)
+    content_tag(:strong, name, class: 'player')
+  end
+
 
   private
 

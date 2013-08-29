@@ -19,22 +19,22 @@ body {
   margin: 0;
 }
 
-#navbar, #content {
+.l-inside {
   max-width: $desktop-max-width;
   width: 100%;
   margin: 0 auto;
 }
 
 @media all and (max-width: 600px) {
-  #navbar, #content {
+  .l-inside {
     max-width: 100%;
   }
 }
 
-#navbar-wrap {
+#navbar {
   background: black;
 }
-#navbar {
+#navbar .l-inside {
   display: table;
   height: 3em;
   vertical-align: middle;
@@ -68,18 +68,4 @@ body {
       color: black;
     }
   }
-}
-
-#flash {
-  .flash-msg {
-    padding: .8em;
-    margin-bottom: 1em;
-    border: 2px solid #ddd;
-    border-width: 2px 0;
-    text-align: center;
-  }
-  .syserror, .error {background:#FBE3E4;color:#8a1f11;border-color:#FBC2C4;}
-  .notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
-  .success {background:#E6EFC2;color:#264409;border-color:#C6D880;}
-
 }
