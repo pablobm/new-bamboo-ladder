@@ -9,10 +9,17 @@
   }
   .winner {
     text-align: left;
-    background: -moz-linear-gradient(  45deg, #00FF00 0%, #00FF00 60%, #FFFFFF 70%, #FFFFFF 100%)
+    background: -moz-linear-gradient(   left, #00FF00 0%, #00FF00 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+  }
+  .winner .l-inside {
+    background: -moz-linear-gradient(  45deg, #00FF00 0%, #00FF00 75%, #FFFFFF 85%, #FFFFFF 100%)
   }
   .loser {
     text-align: right;
-    background: -moz-linear-gradient(-135deg, #FF0000 0%, #FF0000 60%, #FFFFFF 70%, #FFFFFF 100%)
+    background: -moz-linear-gradient(  right, #FF0000 0%, #FF0000 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+  }
+  .loser .l-inside {
+    color: white;
+    background: -moz-linear-gradient(-135deg, #FF0000 0%, #FF0000 75%, #FFFFFF 85%, #FFFFFF 100%)
   }
 }
