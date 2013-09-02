@@ -1,3 +1,5 @@
+@import 'mixins/colors';
+
 .flash-result {
   p {
     margin-bottom: 0;
@@ -21,5 +23,22 @@
   .loser .l-inside {
     color: white;
     background: -moz-linear-gradient(-135deg, #FF0000 0%, #FF0000 75%, #FFFFFF 85%, #FFFFFF 100%)
+  }
+
+  .actions {
+    position: absolute;
+    right: 1em;
+    p {
+      font-size: 1em; /* 16px */
+    }
+    a {
+      padding: 0 3px;
+      border: 1px solid $color-button-border;
+      border-radius: 4px;
+      background: $color-button-background;
+      color: $color-button-text;
+
+      text-decoration: none;
+    }
   }
 }
