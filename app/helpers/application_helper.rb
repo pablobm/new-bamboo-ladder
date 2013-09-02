@@ -3,6 +3,10 @@ module ApplicationHelper
     section == controller.controller_name ? 'is-current' : ''
   end
 
+  def ordinal_position(player)
+    ordinal(player.position + 1)
+  end
+
   def ordinal(integer)
     case integer % 10
     when 1

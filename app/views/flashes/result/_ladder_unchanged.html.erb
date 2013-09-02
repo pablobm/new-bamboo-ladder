@@ -1,12 +1,12 @@
 <div class="flash-msg flash-result">
   <div class="winner">
     <div class="l-inside">
-      <p><%= player result.winner_name %> takes the top position</p>
+      <p><%= player result.winner_name %> stays on <%= ordinal_position(result.winner) %> place</p>
     </div>
   </div>
   <div class="loser">
     <div class="l-inside">
-      <p>relegating <%= player result.loser_name %> to <%= ordinal_position(result.loser) %> place</p>
+      <p>leaving <%= player result.loser_name %> on <%= ordinal_position(result.loser) %></p>
     </div>
   </div>
   <div class="actions">
