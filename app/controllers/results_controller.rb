@@ -5,7 +5,7 @@ class ResultsController < ApplicationController
 
   def create
     result = Result.create!(create_params)
-    flash[:display] = { result: {result_id: result.id} }
+    display_message(:result, result_id: result.id)
     redirect_to :back
   end
 

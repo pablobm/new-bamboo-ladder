@@ -3,7 +3,7 @@ class Ladder
 
   def resolve(result)
     User.transaction do
-      result.previous_state = User.in_order.map(&:id)
+      result.previous_state = User.state
       result.save!
       transaction(result)
     end

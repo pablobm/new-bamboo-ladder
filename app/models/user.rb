@@ -10,6 +10,11 @@ class User < ActiveRecord::Base
     User.order('position ASC')
   end
 
+  def self.state
+    User.in_order.map(&:id)
+  end
+
+
   protected
 
   def reset_position

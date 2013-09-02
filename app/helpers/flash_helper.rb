@@ -1,11 +1,10 @@
 module FlashHelper
 
   def render_flash
-    return unless flash.key?(:display)
-
     messages =
-      flash_display_messages +
+      flash_complex_messages +
       flash_simple_messages
+    return if messages.empty?
 
     content_tag(:div, messages.html_safe, id: 'flash')
   end
@@ -17,13 +16,19 @@ module FlashHelper
 
   private
 
-  def flash_display_messages
-    return unless flash.key?(:display)
+  def flash_complex_messages
+    messages = []
+    messages += flash[:messages] || []
+    messages += @flash_now && @flash_now[:messages] || []
+    if messages.empty?
+      return ''
+    end
 
-    flash[:display].collect do |msg, opts|
+    messages.collect do |msg|
+      mtype = msg[:_type_]
       begin
-        flash_class = (msg.to_s.camelize + "Flash").constantize
-        f = flash_class.new(opts)
+        flash_class = (mtype.to_s.camelize + "Flash").constantize
+        f = flash_class.new(msg)
         render f.template, f.locals
       rescue User
         raise "I don't know what to do with #{msg.inspect}"

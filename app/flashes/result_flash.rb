@@ -1,8 +1,12 @@
 class ResultFlash
 
   def initialize(opts)
-    result_id = opts.fetch(:result_id)
-    @result = Result.find(result_id)
+    if opts.key?(:result)
+      @result = opts[:result]
+    else
+      result_id = opts.fetch(:result_id)
+      @result = Result.find(result_id)
+    end
   end
 
   def template

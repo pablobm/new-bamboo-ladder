@@ -1,3 +1,17 @@
-<p class="flash-msg notice">
-  <%= result.winner_name %> defended the title against pretender <%= result.loser_name %> <%= link_to "undo", undo_results_path %>
-</p>
+<div class="flash-msg flash-result">
+  <div class="winner">
+    <div class="l-inside">
+      <p><%= player result.winner_name %> defended the title</p>
+    </div>
+  </div>
+  <div class="loser">
+    <div class="l-inside">
+      <p>against pretender <%= result.loser_name %></p>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="l-inside">
+      <p><%= link_to "undo", undo_results_path %></p>
+    </div>
+  </div>
+</div>
