@@ -16,7 +16,7 @@ class ResultFlash
     elsif @result.loser_previous_position == 1 &&
        [2, 3].include?(@result.winner_previous_position)
       'flashes/result/second_beats_first'
-    elsif @result.loser_previous_position > @result.winner_previous_position
+    elsif @result.loser_previous_position < @result.winner_previous_position
       'flashes/result/ladder_changed'
     else
       'flashes/result/ladder_unchanged'
