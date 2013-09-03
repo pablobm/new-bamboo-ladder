@@ -7,7 +7,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body><div id="body">
+<body><div id="body" class="wait-for-load">
 
 <div id="navbar"><div class="l-inside"><div id="navbar-inside">
   <p class="link ladder-link <%= current_if_section 'players' %>"><%= link_to "Ladder", players_path %></p>

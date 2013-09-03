@@ -13,69 +13,69 @@
   // Default colors
   .winner {
     text-align: left;
-    background: -moz-linear-gradient(   left, #00FF00 0%, #00FF00 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+    background: linear-gradient(   to right, #00FF00 0%, #00FF00 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
   .winner .l-inside {
-    background: -moz-linear-gradient(  45deg, #00FF00 0%, #00FF00 75%, #FFFFFF 85%, #FFFFFF 100%);
+    background: linear-gradient(  45deg, #00FF00 0%, #00FF00 75%, #FFFFFF 85%, #FFFFFF 100%);
   }
   .loser {
     text-align: right;
-    background: -moz-linear-gradient(  right, #FF0000 0%, #FF0000 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+    background: linear-gradient(  to left, #FF0000 0%, #FF0000 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
   .loser .l-inside {
     color: white;
-    background: -moz-linear-gradient(-135deg, #FF0000 0%, #FF0000 75%, #FFFFFF 85%, #FFFFFF 100%)
+    background: linear-gradient(-135deg, #FF0000 0%, #FF0000 75%, #FFFFFF 85%, #FFFFFF 100%)
   }
 
   // Gold
   .winner[data-player-position="0"] {
-    background: -moz-linear-gradient(   left, $color-gold-background 0%, $color-gold-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+    background: linear-gradient(   to right, $color-gold-background 0%, $color-gold-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
   .loser[data-player-position="0"] {
-    background: -moz-linear-gradient(  right, $color-gold-background 0%, $color-gold-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+    background: linear-gradient(  to left, $color-gold-background 0%, $color-gold-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
 
   .winner[data-player-position="0"] .l-inside {
-    background: -moz-linear-gradient(  45deg, $color-gold-background 0%, $color-gold-background 75%, #FFFFFF 85%, #FFFFFF 100%);
+    background: linear-gradient(  45deg, $color-gold-background 0%, $color-gold-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-gold-text;
   }
   .loser[data-player-position="0"] .l-inside {
-    background: -moz-linear-gradient(-135deg, $color-gold-background 0%, $color-gold-background 75%, #FFFFFF 85%, #FFFFFF 100%);
+    background: linear-gradient(-135deg, $color-gold-background 0%, $color-gold-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-gold-text;
   }
 
 
   // Silver
   .winner[data-player-position="1"] {
-    background: -moz-linear-gradient(   left, $color-silver-background 0%, $color-silver-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+    background: linear-gradient(   to right, $color-silver-background 0%, $color-silver-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
   .loser[data-player-position="1"] {
-    background: -moz-linear-gradient(  right, $color-silver-background 0%, $color-silver-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+    background: linear-gradient(  to left, $color-silver-background 0%, $color-silver-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
 
   .winner[data-player-position="1"] .l-inside {
-    background: -moz-linear-gradient(  45deg, $color-silver-background 0%, $color-silver-background 75%, #FFFFFF 85%, #FFFFFF 100%);
+    background: linear-gradient(  45deg, $color-silver-background 0%, $color-silver-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-silver-text;
   }
   .loser[data-player-position="1"] .l-inside {
-    background: -moz-linear-gradient(-135deg, $color-silver-background 0%, $color-silver-background 75%, #FFFFFF 85%, #FFFFFF 100%);
+    background: linear-gradient(-135deg, $color-silver-background 0%, $color-silver-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-silver-text;
   }
 
   // Bronze
   .winner[data-player-position="2"] {
-    background: -moz-linear-gradient(   left, $color-bronze-background 0%, $color-bronze-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+    background: linear-gradient(   to right, $color-bronze-background 0%, $color-bronze-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
   .loser[data-player-position="2"] {
-    background: -moz-linear-gradient(  right, $color-bronze-background 0%, $color-bronze-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
+    background: linear-gradient(  to left, $color-bronze-background 0%, $color-bronze-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
 
   .winner[data-player-position="2"] .l-inside {
-    background: -moz-linear-gradient(  45deg, $color-bronze-background 0%, $color-bronze-background 75%, #FFFFFF 85%, #FFFFFF 100%);
+    background: linear-gradient(  45deg, $color-bronze-background 0%, $color-bronze-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-bronze-text;
   }
   .loser[data-player-position="2"] .l-inside {
-    background: -moz-linear-gradient(-135deg, $color-bronze-background 0%, $color-bronze-background 75%, #FFFFFF 85%, #FFFFFF 100%);
+    background: linear-gradient(-135deg, $color-bronze-background 0%, $color-bronze-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-bronze-text;
   }
 
@@ -95,6 +95,22 @@
       text-decoration: none;
     }
   }
+}
+
+.wait-for-load {
+  .flash-result .winner {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+  .flash-result .loser {
+    -webkit-transform: translateX( 100%);
+            transform: translateX( 100%);
+  }
+}
+.flash-result .winner,
+.flash-result .loser {
+  -webkit-transition: -webkit-transform .5s;
+          transition: transform .5s;
 }
 
 @media all and (max-width: 600px) {
