@@ -10,21 +10,51 @@ class ResultFlash
   end
 
   def template
-    if @result.winner_previous_position == 1 &&
-       [2, 3].include?(@result.loser_previous_position)
-      'flashes/result/first_beats_second'
-    elsif @result.loser_previous_position == 1 &&
-       [2, 3].include?(@result.winner_previous_position)
-      'flashes/result/second_beats_first'
-    elsif @result.loser_previous_position < @result.winner_previous_position
-      'flashes/result/ladder_changed'
-    else
-      'flashes/result/ladder_unchanged'
-    end
+    'flashes/result'
   end
 
   def locals
-    {result: @result}
+    {result: @result, phrases: phrases}
+  end
+
+
+  private
+
+  def phrases
+    winner_new_ordinal = h.ordinal_position(@result.winner)
+    loser_new_ordinal = h.ordinal_position(@result.loser)
+
+    if @result.winner_previous_position == 1 &&
+       [2, 3].include?(@result.loser_previous_position)
+      {
+        winner: "#{@result.winner_name} defended the title",
+        loser:  "against pretender #{@result.loser_name}",
+      }
+    elsif @result.loser_previous_position == 1 &&
+       [2, 3].include?(@result.winner_previous_position)
+      {
+        winner: "#{@result.winner_name} takes the top position",
+        loser:  "relegating #{@result.loser_name} to #{loser_new_ordinal}",
+      }
+    elsif @result.loser_previous_position < @result.winner_previous_position
+      {
+        winner: "#{@result.winner_name} climbs to #{winner_new_ordinal} place",
+        loser:  "leaving #{@result.loser_name} #{loser_new_ordinal}",
+      }
+    else
+      {
+        winner: "#{@result.winner_name} stays in #{winner_new_ordinal} place",
+        loser:  "leaving #{@result.loser_name} #{loser_new_ordinal}",
+      }
+    end
+  end
+
+  def h
+    @h ||= begin
+      ret = Object.new
+      ret.extend PositionHelper
+      ret
+    end
   end
 
 end

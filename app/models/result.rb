@@ -24,6 +24,10 @@ class Result < ActiveRecord::Base
     loser.try(:name)
   end
 
+  def winner_new_position
+    winner.try(:position)
+  end
+
   def loser_new_position
     loser.try(:position)
   end

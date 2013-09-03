@@ -4,14 +4,14 @@
       <p><%= link_to "undo", undo_results_path %></p>
     </div>
   </div>
-  <div class="winner">
+  <div class="winner" data-player-position="<%= result.winner_new_position %>">
     <div class="l-inside">
-      <p><%= player result.winner_name %> defended the title</p>
+      <p><%= phrases[:winner] %></p>
     </div>
   </div>
-  <div class="loser">
+  <div class="loser" data-player-position="<%= result.loser_new_position %>">
     <div class="l-inside">
-      <p>against pretender <%= result.loser_name %></p>
+      <p><%= phrases[:loser] %></p>
     </div>
   </div>
 </div>
