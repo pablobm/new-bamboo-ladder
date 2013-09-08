@@ -12,6 +12,7 @@ class TestsController < ApplicationController
     display_message_now(:result, result: Result.new(winner: last, loser: second, previous_state: User.state))
 
     flash.now[:notice] = "This is a simple notice"
+    flash.now[:alert] = "Alert! Achtung!"
   end
 
 
