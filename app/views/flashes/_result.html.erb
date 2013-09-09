@@ -1,0 +1,17 @@
+<div class="flash-msg flash-result">
+  <div class="actions">
+    <div class="l-inside">
+      <p><%= link_to "undo", undo_results_path %></p>
+    </div>
+  </div>
+  <div class="winner" data-player-position="<%= result.winner_new_position %>">
+    <div class="l-inside">
+      <p><%= phrases[:winner] %></p>
+    </div>
+  </div>
+  <div class="loser" data-player-position="<%= result.loser_new_position %>">
+    <div class="l-inside">
+      <p><%= phrases[:loser] %></p>
+    </div>
+  </div>
+</div>

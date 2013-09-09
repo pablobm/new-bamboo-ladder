@@ -7,9 +7,9 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body><div id="body">
+<body><div id="body" class="wait-for-load">
 
-<div id="navbar-wrap"><div id="navbar"><div id="navbar-inside">
+<div id="navbar"><div class="l-inside"><div id="navbar-inside">
   <p class="link ladder-link <%= current_if_section 'players' %>"><%= link_to "Ladder", players_path %></p>
   <p class="link results-link <%= current_if_section 'results' %>"><%= link_to "Past results", results_path %></p>
   <% if current_user %>
@@ -19,15 +19,9 @@
   <% end %>
 </div></div></div>
 
-<% if flash.present? %>
-  <div id="flash">
-    <% flash.each do |type, msg| %>
-      <p class="flash-msg <%= type %>"><%= msg %></p>
-    <% end %>
-  </div>
-<% end %>
+<%= render_flash %>
 
-<div id="content-wrap"><div id="content">
+<div id="content"><div class="l-inside">
 
   <% if current_user %>
     <%= render 'layouts/result_form' %>

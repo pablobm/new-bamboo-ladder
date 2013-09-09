@@ -6,8 +6,13 @@ class Player < ActiveRecord::Base
   before_validation :reset_position, on: :create
 
   def self.in_order
-    Player.order('position ASC')
+    self.order('position ASC')
   end
+
+  def self.state
+    self.in_order.map(&:id)
+  end
+
 
   protected
 
