@@ -37,13 +37,13 @@ class EloRating
   end
 
   def top_up_pool
-    while Player.sum(:elo_rating) < Player.count*initial_rating
+    while Player.count*initial_rating - Player.sum(:elo_rating) > Player.count
       Player.update_all('elo_rating = elo_rating + 1')
     end
   end
 
   def initial_rating
-    Elo::Player.new.rating
+    @initial_rating ||= Elo::Player.new.rating
   end
 
 end
