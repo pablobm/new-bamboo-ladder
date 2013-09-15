@@ -4,6 +4,12 @@
   position: relative;
   width: 100%;
 
+  h3 {
+    border-bottom: 1px solid #ccc;
+    background: $color-text-subdued;
+    color: white;
+    text-transform: uppercase;
+  }
   li {
     border-bottom: 1px solid #ccc;
     line-height: 3em;
@@ -15,7 +21,7 @@
   /*
    * Columns
    */
-  ol {
+  .column {
     float: left;
   }
   .ladder,
@@ -71,4 +77,5 @@
       font-size: .5em;
     }
   }
+
 }
