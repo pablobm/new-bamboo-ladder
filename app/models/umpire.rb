@@ -52,8 +52,8 @@ class Umpire
   private
 
   def replay_results!
-    last_week = Result.order('created_at ASC').first.created_at.strftime('%W')
-    Result.all.each do |r|
+    last_week = Result.in_order.first.created_at.strftime('%W')
+    Result.in_order.each do |r|
       current_week = r.created_at.strftime('%W')
       pp current_week
       if current_week != last_week

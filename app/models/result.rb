@@ -14,7 +14,11 @@ class Result < ActiveRecord::Base
   after_destroy :undo
 
   def self.latest_first
-    self.order('id DESC')
+    self.order('created_at DESC')
+  end
+
+  def self.in_order
+    self.order('created_at ASC')
   end
 
   def winner_name
