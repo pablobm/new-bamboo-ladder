@@ -12,6 +12,9 @@
     text-align: center;
   }
 
+  /*
+   * Columns
+   */
   ol {
     float: left;
   }
@@ -46,23 +49,25 @@
   }
   .position {
     float: left;
-    height: 2.2em;
+    height: 1.5em;
     width: 100%;
     line-height: 100%;
     font-family: Georgia, sans-serif;
     color: $color-text-subdued;
 
     span {
+      margin-top: .1em;
       font-size: 3em;
     }
   }
   .elo-rating {
     float: left;
-    height: 0.8em;
+    height: 1.5em;
     width: 100%;
     line-height: 100%;
 
     span {
+      margin-top: .5em;
       font-size: .5em;
     }
   }

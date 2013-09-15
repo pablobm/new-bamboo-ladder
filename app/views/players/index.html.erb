@@ -15,8 +15,8 @@
     <% @rankings.each do |pos, elo_rating| %>
       <li>
         <span class="wrap">
+          <span class="elo-rating"><span><%= elo_rating %></span></span>
           <span class="position"><span><%= pos %></span></span>
-          <span class="elo-rating"><span><%= elo_rating %></span>
         </span>
       </li>
     <% end %>
