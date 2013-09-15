@@ -10,7 +10,7 @@ class Player < ActiveRecord::Base
   end
 
   def self.in_elo_order
-    Player.order('elo_rating ASC')
+    Player.order('elo_rating DESC')
   end
 
   def self.alphabetical

@@ -1,0 +1,69 @@
+@import 'mixins/colors';
+
+.standings {
+  position: relative;
+  width: 100%;
+
+  li {
+    border-bottom: 1px solid #ccc;
+    line-height: 3em;
+    padding: 0 .5em;
+    list-style: none;
+    text-align: center;
+  }
+
+  ol {
+    float: left;
+  }
+  .ladder,
+  .elo {
+    width: 50%;
+  }
+  .rankings {
+    position: absolute;
+    left: 41%;
+    top: 0;
+  }
+
+  .ladder,
+  .elo {
+    text-align: center;
+  }
+  .rankings {
+    text-align: center;
+
+    li {
+      overflow: hidden;
+    }
+
+    span {
+      display: block;
+    }
+    .wrap {
+      width: 3em;
+      height: 100%;
+    }
+  }
+  .position {
+    float: left;
+    height: 2.2em;
+    width: 100%;
+    line-height: 100%;
+    font-family: Georgia, sans-serif;
+    color: $color-text-subdued;
+
+    span {
+      font-size: 3em;
+    }
+  }
+  .elo-rating {
+    float: left;
+    height: 0.8em;
+    width: 100%;
+    line-height: 100%;
+
+    span {
+      font-size: .5em;
+    }
+  }
+}

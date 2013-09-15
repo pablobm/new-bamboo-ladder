@@ -52,7 +52,15 @@ class Umpire
   private
 
   def replay_results!
+    last_week = Result.order('created_at ASC').first.created_at.strftime('%W')
     Result.all.each do |r|
+      current_week = r.created_at.strftime('%W')
+      pp current_week
+      if current_week != last_week
+        pp 'decay'
+        elo_rating.decay
+      end
+      last_week = current_week
       Result.transaction do
         r.previous_state = Player.in_ladder_order.map(&:id)
         ladder.resolve(r)

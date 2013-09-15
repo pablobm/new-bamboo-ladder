@@ -1,9 +1,16 @@
 class EloRating
   include Singleton
 
+  def decay
+    active_ids = Result.where('created_at > ?', inaction_threshold).map{|r| [r.winner_id, r.loser_id] }.flatten.uniq
+    inactive_ids = Player.where('id NOT IN (?)', active_ids).map(&:id)
+    if Result.where('created_at < ?', inaction_threshold).exists? && inactive_ids.any?
+      Player.where('id IN (?)', active_ids).update_all("elo_rating = elo_rating + #{inactive_ids.count.to_i}")
+      Player.where('id IN (?)', inactive_ids).update_all("elo_rating = elo_rating - #{active_ids.count.to_i}")
+    end
+  end
+
   def resolve(result)
-    decay
-    result.reload
     update_players(result.winner, result.loser)
     top_up_pool
   end
@@ -15,15 +22,6 @@ class EloRating
 
   def inaction_threshold
     Time.now - INACTION_LIMIT
-  end
-
-  def decay
-    active_ids = Result.where('created_at > ?', inaction_threshold).map{|r| [r.winner_id, r.loser_id] }.flatten.uniq
-    inactive_ids = Player.where('id NOT IN (?)', active_ids).map(&:id)
-    if Result.where('created_at < ?', inaction_threshold).exists? && inactive_ids.any?
-      Player.where('id IN (?)', active_ids).update_all("elo_rating = elo_rating + #{inactive_ids.count.to_i}")
-      Player.where('id IN (?)', inactive_ids).update_all("elo_rating = elo_rating - #{active_ids.count.to_i}")
-    end
   end
 
   def update_players(winner, loser)
