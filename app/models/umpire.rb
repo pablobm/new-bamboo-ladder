@@ -55,9 +55,7 @@ class Umpire
     last_week = Result.in_order.first.created_at.strftime('%W')
     Result.in_order.each do |r|
       current_week = r.created_at.strftime('%W')
-      pp current_week
       if current_week != last_week
-        pp 'decay'
         elo_rating.decay
       end
       last_week = current_week
