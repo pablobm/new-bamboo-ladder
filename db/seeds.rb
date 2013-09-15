@@ -19,11 +19,11 @@ pablo
 lee
 EOL
 
-User.update_all(position: nil)
+User.update_all(ladder_rank: nil)
 INITIAL_LADDER.split.each_with_index do |name, i|
   user = User.where(email: "#{name}@new-bamboo.co.uk").first_or_initialize
   user.name ||= name.humanize
-  user.position = i
+  user.ladder_rank = i
   pp user
   user.save!
 end

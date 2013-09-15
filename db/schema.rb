@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130818001001) do
+ActiveRecord::Schema.define(version: 20130915124647) do
 
   create_table "players", force: true do |t|
     t.string   "name"
-    t.integer  "position"
-    t.integer  "elo_rating"
+    t.integer  "ladder_rank"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "elo_rating"
   end
 
   create_table "results", force: true do |t|

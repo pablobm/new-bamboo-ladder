@@ -34,16 +34,16 @@ class Umpire
   end
 
   def reset_ladder!
-    Player.update_all(position: nil)
+    Player.update_all(ladder_rank: nil)
     INITIAL_LADDER.each_with_index do |name, i|
       user = Player.find_by_name!(name)
-      user.position = i
+      user.ladder_rank = i
       user.save!
     end
-    last_position = Player.all.inject(0){|max, p| max < p.position.to_i ? p.position.to_i : max }
-    Player.where(position: nil).each do |p|
-      last_position += 1
-      p.position = last_position
+    last_rank = Player.all.inject(0){|max, p| max < p.ladder_rank.to_i ? p.ladder_rank.to_i : max }
+    Player.where(ladder_rank: nil).each do |p|
+      last_rank += 1
+      p.ladder_rank = last_rank
       p.save!
     end
   end
@@ -54,7 +54,7 @@ class Umpire
   def replay_results!
     Result.all.each do |r|
       Result.transaction do
-        r.previous_state = Player.in_order.map(&:id)
+        r.previous_state = Player.in_ladder_order.map(&:id)
         ladder.resolve(r)
         elo_rating.resolve(r)
       end
