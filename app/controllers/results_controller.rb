@@ -11,7 +11,6 @@ class ResultsController < ApplicationController
 
   def undo
     @result = Result.latest_first.first
-    pp @result.winner
   end
 
   def destroy
