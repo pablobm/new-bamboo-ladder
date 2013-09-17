@@ -20,5 +20,5 @@ def assert_ladder(expected_names)
 end
 
 def ladder_names
-  all('.ladder-name').map(&:text)
+  all('.ladder .player-name').map(&:text)
 end
