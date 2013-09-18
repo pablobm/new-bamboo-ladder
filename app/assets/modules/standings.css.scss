@@ -13,7 +13,6 @@
   li {
     border-bottom: 1px solid #ccc;
     line-height: 3em;
-    padding: 0 .5em;
     list-style: none;
     text-align: center;
   }
@@ -30,7 +29,7 @@
   }
   .rankings {
     position: absolute;
-    left: 41%;
+    left: 43%;
     top: 0;
   }
 
@@ -40,6 +39,7 @@
   }
   .rankings {
     text-align: center;
+    color: white;
 
     li {
       overflow: hidden;
@@ -50,16 +50,19 @@
     }
     .wrap {
       width: 3em;
-      height: 100%;
     }
+  }
+  .wrap {
+    display: block;
+    height: 3em;
+    background: $color-text-subdued;
   }
   .position {
     float: left;
-    height: 1.5em;
+    height: 1.6em;
     width: 100%;
     line-height: 100%;
     font-family: Georgia, sans-serif;
-    color: $color-text-subdued;
 
     span {
       margin-top: .1em;
@@ -68,13 +71,19 @@
   }
   .elo-rating {
     float: left;
-    height: 1.5em;
+    height: .9em;
+    margin-top: .5em;
     width: 100%;
-    line-height: 100%;
+    line-height: .5em;
 
     span {
-      margin-top: .5em;
+      float: right;
+      width: 4em;
       font-size: .5em;
+      text-align: center;
+      background-color: white;
+      color: $color-text-subdued;
+      border-radius: .5em 0 0 .5em;
     }
   }
 
