@@ -29,6 +29,24 @@ class Result < ActiveRecord::Base
     loser.try(:name)
   end
 
+  def winner_new_ladder_rank
+    winner.try(:ladder_rank)
+  end
+
+  def loser_new_ladder_rank
+    loser.try(:ladder_rank)
+  end
+
+  def winner_previous_ladder_rank
+    @winner_previous_ladder_rank ||=
+      previous_state.index(winner_id) + 1
+  end
+
+  def loser_previous_ladder_rank
+    @loser_previous_ladder_rank ||=
+      previous_state.index(loser_id) + 1
+  end
+
 
   private
 

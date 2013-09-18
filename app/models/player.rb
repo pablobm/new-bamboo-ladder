@@ -17,6 +17,10 @@ class Player < ActiveRecord::Base
     Player.order('name ASC')
   end
 
+  def self.state
+    self.in_ladder_order.map(&:id)
+  end
+
 
   protected
 

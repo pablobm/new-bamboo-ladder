@@ -35,5 +35,4 @@ ActiveRecord::Schema.define(version: 20130915124647) do
     t.timestamp "created_at"
     t.timestamp "updated_at"
   end
-
 end
