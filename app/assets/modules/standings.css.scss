@@ -1,90 +1,20 @@
 @import 'mixins/colors';
 
 .standings {
-  position: relative;
-  width: 100%;
-
-  h3 {
-    border-bottom: 1px solid #ccc;
-    background: $color-text-subdued;
-    color: white;
-    text-transform: uppercase;
-  }
   li {
+    position: relative;
+    width: 100%;
     border-bottom: 1px solid #ccc;
     line-height: 3em;
+    padding: 0 .5em;
     list-style: none;
     text-align: center;
   }
-
-  /*
-   * Columns
-   */
-  .column {
-    float: left;
-  }
-  .ladder,
-  .elo {
-    width: 50%;
-  }
-  .rankings {
-    position: absolute;
-    left: 43%;
-    top: 0;
-  }
-
-  .ladder,
-  .elo {
-    text-align: center;
-  }
-  .rankings {
-    text-align: center;
-    color: white;
-
-    li {
-      overflow: hidden;
-    }
-
-    span {
-      display: block;
-    }
-    .wrap {
-      width: 3em;
-    }
-  }
-  .wrap {
-    display: block;
-    height: 3em;
-    background: $color-text-subdued;
-  }
   .position {
-    float: left;
-    height: 1.6em;
-    width: 100%;
-    line-height: 100%;
+    position: absolute;
+    left: 1em;
+    font-size: 2em;
     font-family: Georgia, sans-serif;
-
-    span {
-      margin-top: .1em;
-      font-size: 3em;
-    }
+    color: $color-text-subdued;
   }
-  .elo-rating {
-    float: left;
-    height: .9em;
-    margin-top: .5em;
-    width: 100%;
-    line-height: .5em;
-
-    span {
-      float: right;
-      width: 4em;
-      font-size: .5em;
-      text-align: center;
-      background-color: white;
-      color: $color-text-subdued;
-      border-radius: .5em 0 0 .5em;
-    }
-  }
-
 }

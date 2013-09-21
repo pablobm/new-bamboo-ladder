@@ -5,10 +5,6 @@ class Player < ActiveRecord::Base
 
   before_validation :reset_ladder_rank, on: :create
 
-  def self.in_ladder_order
-    Player.order('ladder_rank ASC')
-  end
-
   def self.in_elo_order
     Player.order('elo_rating DESC')
   end

@@ -1,33 +1,5 @@
-<div class="standings">
-  <div class="ladder column">
-    <h3>Ladder</h3>
-    <ol>
-      <% @ladder.each do |player| %>
-        <li class="player-name"><%= player.name %></li>
-      <% end %>
-    </ol>
-  </div>
-
-  <div class="elo column">
-    <h3>Elo</h3>
-    <ol>
-      <% @elo_ratings.each do |player| %>
-        <li><%= player.name %></li>
-      <% end %>
-    </ol>
-  </div>
-
-  <div class="rankings column">
-    <h3>&nbsp;</h3>
-    <ol>
-      <% @rankings.each do |pos, elo_rating| %>
-        <li>
-          <span class="wrap">
-            <span class="elo-rating"><span><%= elo_rating %></span></span>
-            <span class="position"><span><%= pos %></span></span>
-          </span>
-        </li>
-      <% end %>
-    </ol>
-  </div>
-</div>
+<ol class="standings">
+  <% @players.each do |player| %>
+    <li class="entry"><span class="position"><%= player.position %>.</span> <span class="name"><%= player.name %></span></li>
+  <% end %>
+</ol>
