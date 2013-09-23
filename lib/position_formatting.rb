@@ -4,15 +4,6 @@ module PositionFormatting
   end
 
   def ordinal(integer)
-    case integer % 10
-    when 1
-      "#{integer}st"
-    when 2
-      "#{integer}nd"
-    when 3
-      "#{integer}rd"
-    else
-      "#{integer}th"
-    end
+    ActiveSupport::Inflector.ordinalize(integer)
   end
 end
