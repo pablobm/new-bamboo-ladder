@@ -1,10 +1,11 @@
 class ResultsController < ApplicationController
+
   def index
     @results = Result.latest_first
   end
 
   def create
-    result = Result.create!(create_params)
+    result = NewResult.create!(create_params)
     display_message(:result, result_id: result.id)
     redirect_to :back
   end
