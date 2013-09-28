@@ -15,9 +15,8 @@ class ResultsController < ApplicationController
   end
 
   def destroy
-    result = Result.find(params[:id])
-    result.destroy
-    redirect_to root_path, notice: "That result was deleted"
+    DiscardedResult.find(params[:id]).destroy
+    redirect_to root_path, notice: "OK, let's pretend that didn't happen"
   end
 
 

@@ -9,7 +9,6 @@ class Result < ActiveRecord::Base
 
   serialize :previous_state, Array
 
-  after_destroy :undo
 
   def self.latest_first
     self.order('id DESC')
@@ -48,10 +47,6 @@ class Result < ActiveRecord::Base
     if winner_id == loser_id
       errors[:base] << "Winner and loser cannot be the same"
     end
-  end
-
-  def undo
-    ladder.undo(self)
   end
 
   def ladder
