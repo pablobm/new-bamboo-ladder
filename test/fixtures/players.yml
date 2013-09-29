@@ -1,14 +1,19 @@
 alice:
   name: Alice
+  elo_rating: 1000
 
 bob:
   name: Bob
+  elo_rating: 1000
 
 carol:
   name: Carol
+  elo_rating: 1000
 
 dan:
   name: Dan
+  elo_rating: 1000
 
 erin:
   name: Erin
+  elo_rating: 1000

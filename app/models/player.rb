@@ -12,5 +12,4 @@ class Player < ActiveRecord::Base
     self.in_elo_order.map(&:id)
   end
 
-
 end

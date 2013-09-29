@@ -1,6 +1,6 @@
 @import 'mixins/colors';
 
-.ladder {
+.rankings {
   li {
     position: relative;
     width: 100%;
@@ -10,7 +10,7 @@
     list-style: none;
     text-align: center;
   }
-  .ladder-position {
+  .rankings-position {
     position: absolute;
     left: 1em;
     font-size: 2em;

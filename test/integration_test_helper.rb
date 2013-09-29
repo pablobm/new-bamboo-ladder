@@ -15,10 +15,22 @@ def submit_result(winner, loser)
   end
 end
 
-def assert_ladder(expected_names)
-  assert_equal expected_names, ladder_names
+def assert_rankings(name1, operator, name2)
+  assert_operator ranking_of(name2), operator, ranking_of(name1)
 end
 
-def ladder_names
-  all('.ladder-name').map(&:text)
+def ranking_of(name)
+  ranking_names.find do |ranking, names|
+    names.include?(name)
+  end.first
+end
+
+def ranking_names
+  all('.rankings-entry').inject({}) do |memo, entry|
+    name = entry.find('.rankings-name').text
+    ranking = entry.find('.rankings-position').text.to_i
+    memo[ranking] ||= []
+    memo[ranking] << name
+    memo
+  end
 end

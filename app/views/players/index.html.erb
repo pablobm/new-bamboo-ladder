@@ -1,5 +1,5 @@
-<ol class="ladder">
+<ol class="rankings">
   <% @players.each do |player| %>
-    <li class="ladder-entry"><span class="ladder-position"><%= player.position+1 %>.</span> <span class="ladder-name"><%= player.name %></span></li>
+    <li class="rankings-entry"><span class="rankings-position"><%= player.position %>.</span> <span class="rankings-name"><%= player.name %></span></li>
   <% end %>
 </ol>

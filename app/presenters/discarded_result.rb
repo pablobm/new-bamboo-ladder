@@ -10,7 +10,7 @@ class DiscardedResult
 
   def destroy
     @result.destroy
-    Ladder.instance.undo(@result)
+    EloRating.instance.undo(@result)
   end
 
 end

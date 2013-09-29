@@ -11,7 +11,7 @@ class NewResult
 
   def self.create!(attrs)
     new(Result.create!(attrs)).tap do |e|
-      Ladder.instance.resolve(e.result)
+      EloRating.instance.resolve(e.result)
     end
   end
 
