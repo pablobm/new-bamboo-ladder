@@ -6,7 +6,6 @@ class EloRating
       decay
     end
     update_players(result.winner, result.loser)
-    top_up_pool
   end
 
   def undo(result)
@@ -44,9 +43,10 @@ class EloRating
       l = Elo::Player.new(rating: loser.elo_rating)
       w = Elo::Player.new(rating: winner.elo_rating)
       w.wins_from(l)
-      loser.elo_rating = l.rating
+      diff = loser.elo_rating - l.rating
+      loser.elo_rating -= diff
       loser.save!
-      winner.elo_rating = w.rating
+      winner.elo_rating += diff
       winner.save!
     end
   end
@@ -57,13 +57,6 @@ class EloRating
     if Result.where('created_at < ?', inaction_threshold).exists? && inactive_ids.any?
       Player.where('id IN (?)', active_ids).update_all("elo_rating = elo_rating + #{inactive_ids.count.to_i}")
       Player.where('id IN (?)', inactive_ids).update_all("elo_rating = elo_rating - #{active_ids.count.to_i}")
-    end
-  end
-
-
-  def top_up_pool
-    while Player.count*initial_rating - Player.sum(:elo_rating) > Player.count
-      Player.update_all('elo_rating = elo_rating + 1')
     end
   end
 

@@ -7,7 +7,7 @@ class Result < ActiveRecord::Base
   validates :loser, presence: true
   validate :winner_different_from_loser
 
-  serialize :previous_state, Array
+  serialize :previous_state, Hash
 
   def self.in_order
     self.order('created_at ASC')

@@ -10,7 +10,7 @@ class NewResult
   end
 
   def self.create!(attrs)
-    new(Result.create!(attrs)).tap do |e|
+    new(Result.create!(attrs.merge(previous_state: State.dump))).tap do |e|
       EloRating.instance.resolve(e.result)
     end
   end
