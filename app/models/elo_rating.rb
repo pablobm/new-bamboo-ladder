@@ -11,9 +11,10 @@ class EloRating
   def undo(result)
     Player.transaction do
       Player.update_all(position: nil)
-      result.previous_state.each_with_index do |uid, i|
-        u = Player.find(uid)
-        u.position = i
+      state = State.load(result.previous_state)
+      state.players.each do |p|
+        u = Player.find(p.id)
+        u.position = p.position
         u.save!
       end
       Result.where('id > ?', result.id).order('id ASC').each do |r|
@@ -48,6 +49,16 @@ class EloRating
       loser.save!
       winner.elo_rating += diff
       winner.save!
+
+      last_rating = nil
+      last_position = nil
+      Player.in_elo_order.to_enum.with_index.map do |player, i|
+        expected_position = i+1
+        position = (last_rating == player.elo_rating) ? last_position : expected_position
+        last_rating = player.elo_rating
+        last_position = position
+        player.update_attributes(position: position)
+      end
     end
   end
 

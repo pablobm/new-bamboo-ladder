@@ -3,6 +3,7 @@ require 'integration_test_helper'
 class RankingsTest < CapybaraTestCase
 
   test "progression after a few games" do
+    Player.update_all(elo_rating: 1000)
     login
 
     submit_result("Carol", "Alice")

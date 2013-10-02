@@ -1,19 +1,24 @@
 alice:
   name: Alice
-  elo_rating: 1000
+  elo_rating: 1020
+  position: 1
 
 bob:
   name: Bob
-  elo_rating: 1000
+  elo_rating: 1010
+  position: 2
 
 carol:
   name: Carol
   elo_rating: 1000
+  position: 3
 
 dan:
   name: Dan
-  elo_rating: 1000
+  elo_rating:  990
+  position: 4
 
 erin:
   name: Erin
-  elo_rating: 1000
+  elo_rating:  980
+  position: 5

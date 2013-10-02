@@ -8,4 +8,5 @@ class Player < ActiveRecord::Base
     self.order('elo_rating DESC')
   end
 
+
 end

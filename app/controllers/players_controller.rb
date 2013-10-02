@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
   def index
-    @players = ListedPlayer.all
+    @players = Player.in_elo_order
   end
 end

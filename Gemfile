@@ -42,6 +42,7 @@ end
 
 group :development, :test do
   gem 'capybara'
+  gem 'launchy'
 end
 
 group :doc do
