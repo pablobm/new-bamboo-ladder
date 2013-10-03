@@ -1,6 +1,6 @@
 module PositionFormatting
   def ordinal_position(player)
-    ordinal(player.position + 1)
+    ordinal(player.position)
   end
 
   def ordinal(integer)
