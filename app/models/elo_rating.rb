@@ -13,9 +13,10 @@ class EloRating
       Player.update_all(position: nil)
       state = State.load(result.previous_state)
       state.players.each do |p|
-        u = Player.find(p.id)
-        u.position = p.position
-        u.save!
+        Player.find(p.id).update_attributes!({
+          position: p.position,
+          elo_rating: p.elo_rating,
+        })
       end
       Result.where('id > ?', result.id).order('id ASC').each do |r|
         resolve(r)

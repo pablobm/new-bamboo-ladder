@@ -19,6 +19,10 @@ def assert_rankings(name1, operator, name2)
   assert_operator ranking_of(name2), operator, ranking_of(name1)
 end
 
+def assert_ranking(name, position)
+  assert_equal position, ranking_of(name)
+end
+
 def ranking_of(name)
   ranking_names.find do |ranking, names|
     names.include?(name)
@@ -26,9 +30,14 @@ def ranking_of(name)
 end
 
 def ranking_names
+  previous_ranking = 0
   all('.rankings-entry').inject({}) do |memo, entry|
     name = entry.find('.rankings-name').text
     ranking = entry.find('.rankings-position').text.to_i
+    if ranking < previous_ranking
+      flunk "WUT? Player #{name}'s position is not consistent with its position on the list"
+    end
+    previous_ranking = ranking
     memo[ranking] ||= []
     memo[ranking] << name
     memo
