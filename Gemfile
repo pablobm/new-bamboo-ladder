@@ -30,15 +30,7 @@ gem 'rails_12factor'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'elo'
-
-group :production do
-  gem 'pg'
-end
-
-group :development do
-  gem 'sqlite3'
-  gem 'taps'
-end
+gem 'pg'
 
 group :development, :test do
   gem 'capybara'
