@@ -10,11 +10,11 @@ class Result < ActiveRecord::Base
   serialize :previous_state, Hash
 
   def self.in_order
-    self.order('created_at ASC')
+    self.order('created_at ASC, id ASC')
   end
 
   def self.latest_first
-    self.order('created_at DESC')
+    self.order('created_at DESC, id DESC')
   end
 
   def winner_name
