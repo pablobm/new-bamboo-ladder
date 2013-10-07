@@ -32,21 +32,21 @@
   }
 
   // Gold
-  .winner[data-player-position="0"] {
+  .winner[data-player-position="1"] {
     background: linear-gradient(   to right, $color-gold-background 0%, $color-gold-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
     background: -webkit-linear-gradient(   to right, $color-gold-background 0%, $color-gold-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
-  .loser[data-player-position="0"] {
+  .loser[data-player-position="1"] {
     background: linear-gradient(  to left, $color-gold-background 0%, $color-gold-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
     background: -webkit-linear-gradient(  to left, $color-gold-background 0%, $color-gold-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
 
-  .winner[data-player-position="0"] .l-inside {
+  .winner[data-player-position="1"] .l-inside {
     background: linear-gradient(  45deg, $color-gold-background 0%, $color-gold-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     background: -webkit-linear-gradient(  45deg, $color-gold-background 0%, $color-gold-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-gold-text;
   }
-  .loser[data-player-position="0"] .l-inside {
+  .loser[data-player-position="1"] .l-inside {
     background: linear-gradient(-135deg, $color-gold-background 0%, $color-gold-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     background: -webkit-linear-gradient(-135deg, $color-gold-background 0%, $color-gold-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-gold-text;
@@ -54,42 +54,42 @@
 
 
   // Silver
-  .winner[data-player-position="1"] {
+  .winner[data-player-position="2"] {
     background: linear-gradient(   to right, $color-silver-background 0%, $color-silver-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
     background: -webkit-linear-gradient(   to right, $color-silver-background 0%, $color-silver-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
-  .loser[data-player-position="1"] {
+  .loser[data-player-position="2"] {
     background: linear-gradient(  to left, $color-silver-background 0%, $color-silver-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
     background: -webkit-linear-gradient(  to left, $color-silver-background 0%, $color-silver-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
 
-  .winner[data-player-position="1"] .l-inside {
+  .winner[data-player-position="2"] .l-inside {
     background: linear-gradient(  45deg, $color-silver-background 0%, $color-silver-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     background: -webkit-linear-gradient(  45deg, $color-silver-background 0%, $color-silver-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-silver-text;
   }
-  .loser[data-player-position="1"] .l-inside {
+  .loser[data-player-position="2"] .l-inside {
     background: linear-gradient(-135deg, $color-silver-background 0%, $color-silver-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     background: -webkit-linear-gradient(-135deg, $color-silver-background 0%, $color-silver-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-silver-text;
   }
 
   // Bronze
-  .winner[data-player-position="2"] {
+  .winner[data-player-position="3"] {
     background: linear-gradient(   to right, $color-bronze-background 0%, $color-bronze-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
     background: -webkit-linear-gradient(   to right, $color-bronze-background 0%, $color-bronze-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
-  .loser[data-player-position="2"] {
+  .loser[data-player-position="3"] {
     background: linear-gradient(  to left, $color-bronze-background 0%, $color-bronze-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
     background: -webkit-linear-gradient(  to left, $color-bronze-background 0%, $color-bronze-background 49.9%, #FFFFFF 50.1%, #FFFFFF 100%);
   }
 
-  .winner[data-player-position="2"] .l-inside {
+  .winner[data-player-position="3"] .l-inside {
     background: linear-gradient(  45deg, $color-bronze-background 0%, $color-bronze-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     background: -webkit-linear-gradient(  45deg, $color-bronze-background 0%, $color-bronze-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-bronze-text;
   }
-  .loser[data-player-position="2"] .l-inside {
+  .loser[data-player-position="3"] .l-inside {
     background: linear-gradient(-135deg, $color-bronze-background 0%, $color-bronze-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     background: -webkit-linear-gradient(-135deg, $color-bronze-background 0%, $color-bronze-background 75%, #FFFFFF 85%, #FFFFFF 100%);
     color: $color-bronze-text;
