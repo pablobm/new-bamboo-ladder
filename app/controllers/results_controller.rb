@@ -6,7 +6,7 @@ class ResultsController < ApplicationController
 
   def create
     result = NewResult.create!(create_params)
-    display_message(:result, result_id: result.id)
+    display_message(:result, result_id: result.id, points: result.points)
     redirect_to :back
   end
 

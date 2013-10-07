@@ -7,6 +7,7 @@ class ResultFlash
       result_id = opts.fetch(:result_id)
       @result = Result.find(result_id)
     end
+    @points = opts[:points]
   end
 
   def template
@@ -26,6 +27,7 @@ class ResultFlash
     {
       winner: "#{@result.winner_name} stays in #{winner_new_ordinal} place",
       loser:  "leaving #{@result.loser_name} #{loser_new_ordinal}",
+      points: "Points transferred: #{@points}"
     }
   end
 

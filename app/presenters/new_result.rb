@@ -3,7 +3,7 @@ class NewResult
 
   def_delegators :@result, :id
 
-  attr_reader :result
+  attr_reader :result, :points
 
   def initialize(result)
     @result = result
@@ -11,7 +11,7 @@ class NewResult
 
   def self.create!(attrs)
     new(Result.create!(attrs.merge(previous_state: State.dump))).tap do |e|
-      EloRating.instance.resolve(e.result)
+      @points = EloRating.instance.resolve(e.result)
     end
   end
 

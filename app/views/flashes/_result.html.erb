@@ -4,6 +4,9 @@
       <p><%= link_to "undo", undo_results_path %></p>
     </div>
   </div>
+  <div class="points">
+    <p><%= phrases[:points] %></p>
+  </div>
   <div class="winner" data-player-position="<%= result.winner_new_position %>">
     <div class="l-inside">
       <p><%= phrases[:winner] %></p>

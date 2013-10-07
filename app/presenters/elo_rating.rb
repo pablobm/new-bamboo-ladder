@@ -41,7 +41,6 @@ class EloRating
   end
 
   def update_players(winner, loser)
-    diff = nil
     Player.transaction do
       l = Elo::Player.new(rating: loser.elo_rating)
       w = Elo::Player.new(rating: winner.elo_rating)
