@@ -41,7 +41,10 @@ class EloRating
   end
 
   def update_players(winner, loser)
+    diff = nil
     Player.transaction do
+      ensure_rating(loser)
+      ensure_rating(winner)
       l = Elo::Player.new(rating: loser.elo_rating)
       w = Elo::Player.new(rating: winner.elo_rating)
       w.wins_from(l)
@@ -71,6 +74,10 @@ class EloRating
       Player.where('id IN (?)', active_ids).update_all("elo_rating = elo_rating + #{inactive_ids.count.to_i}")
       Player.where('id IN (?)', inactive_ids).update_all("elo_rating = elo_rating - #{active_ids.count.to_i}")
     end
+  end
+
+  def ensure_rating(player)
+    player.elo_rating = initial_rating if player.elo_rating.nil?
   end
 
   def initial_rating
