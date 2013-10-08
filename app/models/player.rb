@@ -5,7 +5,7 @@ class Player < ActiveRecord::Base
 
 
   def self.in_elo_order
-    self.order('elo_rating DESC')
+    self.where('elo_rating IS NOT NULL').order('elo_rating DESC')
   end
 
 

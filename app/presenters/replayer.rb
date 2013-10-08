@@ -2,13 +2,7 @@ class Replayer
   include Singleton
 
   def replay_all!
-    reset_elo_ratings!
     replay_results!
-  end
-
-  def reset_elo_ratings!
-    new_player = Elo::Player.new
-    Player.update_all(elo_rating: new_player.rating)
   end
 
 
