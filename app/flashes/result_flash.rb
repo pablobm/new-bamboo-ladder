@@ -25,9 +25,9 @@ class ResultFlash
     winner_new_ordinal = h.ordinal_position(@result.winner)
     loser_new_ordinal = h.ordinal_position(@result.loser)
     {
-      winner: "#{@result.winner_name} stays in #{winner_new_ordinal} place",
-      loser:  "leaving #{@result.loser_name} #{loser_new_ordinal}",
-      points: "Points transferred: #{@points}"
+      winner: %{#{@result.winner_name} stays in <span class="figure">#{winner_new_ordinal}</span> place}.html_safe,
+      loser:  %{leaving #{@result.loser_name} <span class="figure">#{loser_new_ordinal}</span>}.html_safe,
+      points: %{Points transferred: <span class="figure">#{@points}</span>}.html_safe,
     }
   end
 

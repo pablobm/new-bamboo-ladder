@@ -11,7 +11,7 @@ class NewResult
 
   def self.create!(attrs)
     new(Result.create!(attrs.merge(previous_state: State.dump))).tap do |e|
-      @points = EloRating.instance.resolve(e.result)
+      e.instance_variable_set(:@points, EloRating.instance.resolve(e.result))
     end
   end
 
