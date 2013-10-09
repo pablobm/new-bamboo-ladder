@@ -2,8 +2,8 @@
   <% @players.each do |player| %>
     <li class="rankings-entry">
       <span class="rankings-position"><%= player.position %>.</span>
-      <span class="rankings-elo"><%= player.elo_rating %></span>
       <span class="rankings-name"><%= player.name %></span>
+      <span class="rankings-elo"><%= player.elo_rating %></span>
     </li>
   <% end %>
 </ol>
