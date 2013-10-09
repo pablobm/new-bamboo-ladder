@@ -9,8 +9,10 @@ class DiscardedResult
   end
 
   def destroy
-    @result.destroy
-    EloRating.instance.undo(@result)
+    Result.transaction do
+      @result.destroy
+      EloRating.instance.undo(@result)
+    end
   end
 
 end

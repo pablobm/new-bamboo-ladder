@@ -27,4 +27,16 @@ class StateTest < ActiveSupport::TestCase
     assert_equal rs[4].id, 11
   end
 
+  test "it doesn't complain when players have no rating" do
+    players(:erin).update_attributes({
+      elo_rating: nil,
+      position: nil,
+    })
+
+    dump1 = State.dump
+    State.load(dump1)
+    dump2 = State.dump
+    assert_equal dump1, dump2
+  end
+
 end

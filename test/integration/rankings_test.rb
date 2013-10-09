@@ -3,7 +3,7 @@ require 'integration_test_helper'
 class RankingsTest < CapybaraTestCase
 
   test "progression after a few games" do
-    Player.update_all(elo_rating: 1000)
+    Player.update_all(elo_rating: nil, position: nil)
     login
 
     submit_result("Carol", "Alice")
@@ -17,9 +17,8 @@ class RankingsTest < CapybaraTestCase
     assert_rankings "Carol", :==, "Bob"
     assert_rankings "Alice", :==, "Dan"
 
-    # Non-players stay in the middle (for now)
-    assert_rankings "Carol", :>, "Erin"
-    assert_rankings "Erin", :>, "Alice"
+    # Non-players do not appear
+    assert_not_ranked "Erin"
 
     submit_result("Bob", "Carol")
     assert_rankings "Bob", :>, "Carol"

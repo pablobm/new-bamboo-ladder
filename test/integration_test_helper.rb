@@ -23,10 +23,14 @@ def assert_ranking(name, position)
   assert_equal position, ranking_of(name)
 end
 
+def assert_not_ranked(name)
+  assert_nil ranking_of(name)
+end
+
 def ranking_of(name)
   ranking_names.find do |ranking, names|
     names.include?(name)
-  end.first
+  end.try(:first)
 end
 
 def ranking_names
