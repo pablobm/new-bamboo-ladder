@@ -1,11 +1,12 @@
 class ResultsController < ApplicationController
+
   def index
     @results = Result.latest_first
   end
 
   def create
-    result = Result.create!(create_params)
-    display_message(:result, result_id: result.id)
+    result = NewResult.create!(create_params)
+    display_message(:result, result_id: result.id, points: result.points)
     redirect_to :back
   end
 
@@ -14,9 +15,8 @@ class ResultsController < ApplicationController
   end
 
   def destroy
-    result = Result.find(params[:id])
-    result.destroy
-    redirect_to root_path, notice: "That result was deleted"
+    DiscardedResult.find(params[:id]).destroy
+    redirect_to root_path, notice: "OK, let's pretend that didn't happen"
   end
 
 

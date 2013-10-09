@@ -29,18 +29,12 @@ gem 'jbuilder', '~> 1.2'
 gem 'rails_12factor'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-
-group :production do
-  gem 'pg'
-end
-
-group :development do
-  gem 'sqlite3'
-  gem 'taps'
-end
+gem 'elo'
+gem 'pg'
 
 group :development, :test do
   gem 'capybara'
+  gem 'launchy'
 end
 
 group :doc do

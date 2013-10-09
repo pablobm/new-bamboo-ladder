@@ -1,6 +1,6 @@
 @import 'mixins/colors';
 
-.ladder {
+.rankings {
   li {
     position: relative;
     width: 100%;
@@ -10,11 +10,22 @@
     list-style: none;
     text-align: center;
   }
-  .ladder-position {
+  .rankings-position {
     position: absolute;
     left: 1em;
     font-size: 2em;
     font-family: Georgia, sans-serif;
+    color: $color-text-subdued;
+  }
+  .rankings-elo {
+    display: block;
+    position: absolute;
+    top: 2em;
+    right: 1em;
+    line-height: 1em;
+    height: 1em;
+    padding: .2em .5em;
+    font-size: .583em;
     color: $color-text-subdued;
   }
 }

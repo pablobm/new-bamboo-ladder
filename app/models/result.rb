@@ -7,13 +7,14 @@ class Result < ActiveRecord::Base
   validates :loser, presence: true
   validate :winner_different_from_loser
 
-  serialize :previous_state, Array
+  serialize :previous_state, Hash
 
-  after_create :resolve_ladder
-  after_destroy :undo
+  def self.in_order
+    self.order('created_at ASC, id ASC')
+  end
 
   def self.latest_first
-    self.order('id DESC')
+    self.order('created_at DESC, id DESC')
   end
 
   def winner_name
@@ -32,16 +33,6 @@ class Result < ActiveRecord::Base
     loser.try(:position)
   end
 
-  def winner_previous_position
-    @winner_previous_position ||=
-      previous_state.index(winner_id) + 1
-  end
-
-  def loser_previous_position
-    @loser_previous_position ||=
-      previous_state.index(loser_id) + 1
-  end
-
 
   private
 
@@ -51,15 +42,4 @@ class Result < ActiveRecord::Base
     end
   end
 
-  def resolve_ladder
-    ladder.resolve(self)
-  end
-
-  def undo
-    ladder.undo(self)
-  end
-
-  def ladder
-    @ladder ||= Ladder.instance
-  end
 end

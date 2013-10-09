@@ -15,10 +15,35 @@ def submit_result(winner, loser)
   end
 end
 
-def assert_ladder(expected_names)
-  assert_equal expected_names, ladder_names
+def assert_rankings(name1, operator, name2)
+  assert_operator ranking_of(name2), operator, ranking_of(name1)
 end
 
-def ladder_names
-  all('.ladder-name').map(&:text)
+def assert_ranking(name, position)
+  assert_equal position, ranking_of(name)
+end
+
+def assert_not_ranked(name)
+  assert_nil ranking_of(name)
+end
+
+def ranking_of(name)
+  ranking_names.find do |ranking, names|
+    names.include?(name)
+  end.try(:first)
+end
+
+def ranking_names
+  previous_ranking = 0
+  all('.rankings-entry').inject({}) do |memo, entry|
+    name = entry.find('.rankings-name').text
+    ranking = entry.find('.rankings-position').text.to_i
+    if ranking < previous_ranking
+      flunk "WUT? Player #{name}'s position is not consistent with its position on the list"
+    end
+    previous_ranking = ranking
+    memo[ranking] ||= []
+    memo[ranking] << name
+    memo
+  end
 end
