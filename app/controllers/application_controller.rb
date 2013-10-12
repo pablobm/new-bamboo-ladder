@@ -5,17 +5,13 @@ class ApplicationController < ActionController::Base
 
   before_filter :prepare_new_result_form
 
-  def current_user
-    auth && auth.user
-  end
-  helper_method :current_user
-
 
   protected
 
-  def auth
-    @auth ||= Auth.load(session[:auth])
+  def user_can_enter_results?
+    Figaro.env.trusted_ips.split(',').include?(request.remote_ip)
   end
+  helper_method :user_can_enter_results?
 
   def prepare_new_result_form
     @result = Result.new

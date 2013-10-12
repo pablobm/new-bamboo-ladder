@@ -3,7 +3,7 @@ require 'integration_test_helper'
 class UndoResultTest < CapybaraTestCase
 
   test "undoing an incorrect result" do
-    login
+    assume_a_trusted_user
 
     submit_result("Erin", "Alice")
     assert_ranking "Erin", 4

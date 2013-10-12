@@ -1,10 +1,8 @@
 require 'test_helper'
 
-def login
-  visit root_path
-  click_link "Log in"
-  fill_in "Email", with: User.first.email
-  click_button "Log in"
+def assume_a_trusted_user
+  visit '/'
+  page.driver.request.env['REMOTE_ADDR'] = Figaro.env.trusted_ips.split(',').first
 end
 
 def submit_result(winner, loser)

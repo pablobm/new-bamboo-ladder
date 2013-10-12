@@ -12,18 +12,15 @@
 <div id="navbar"><div class="l-inside"><div id="navbar-inside">
   <p class="link ladder-link <%= current_if_section 'players' %>"><%= link_to "Ladder", players_path %></p>
   <p class="link results-link <%= current_if_section 'results' %>"><%= link_to "Past results", results_path %></p>
-  <% if current_user %>
+  <% if user_can_enter_results? %>
     <p class="link result-form-link"><%= link_to "New result", '#' %></p>
-  <% else %>
-    <p class="link login-link"><%= link_to "Log in", login_path, 'data-no-turbolink' => true %></p>
   <% end %>
 </div></div></div>
 
 <%= render_flash %>
 
 <div id="content"><div class="l-inside">
-
-  <% if current_user %>
+  <% if user_can_enter_results? %>
     <%= render 'layouts/result_form' %>
   <% end %>
   <%= yield %>

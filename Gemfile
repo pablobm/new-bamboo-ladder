@@ -31,6 +31,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'elo'
 gem 'pg'
+gem 'figaro'
 
 group :development, :test do
   gem 'capybara'

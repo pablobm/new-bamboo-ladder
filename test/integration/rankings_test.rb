@@ -4,7 +4,7 @@ class RankingsTest < CapybaraTestCase
 
   test "progression after a few games" do
     Player.update_all(elo_rating: nil, position: nil)
-    login
+    assume_a_trusted_user
 
     submit_result("Carol", "Alice")
     submit_result("Bob", "Dan")

@@ -3,7 +3,7 @@ require 'integration_test_helper'
 class ResultMessagesTest < CapybaraTestCase
 
   test "spiffy messages announcing results" do
-    login
+    assume_a_trusted_user
 
     submit_result("Alice", "Bob")
 
