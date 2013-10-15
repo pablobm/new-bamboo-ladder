@@ -20,7 +20,7 @@ class State
       previous_elo = elo
       Player.new(uid, elo, position)
     end
-    non_rated_players = non_rated.each{|id, _| Player.new(id)}
+    non_rated_players = non_rated.map{|id, _| Player.new(id)}
     new(rated_players + non_rated_players)
   end
 
