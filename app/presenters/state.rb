@@ -7,11 +7,11 @@ class State
       memo[p.id] = p.elo_rating
       memo
     end
-    {elo_ratings: elo_ratings}
+    {'elo_ratings' => elo_ratings}
   end
 
   def self.load(dump)
-    elos = dump[:elo_ratings] || {}
+    elos = dump['elo_ratings'] || {}
     position = 1
     previous_elo = nil
     non_rated, rated = elos.partition{|_, elo| elo.nil? }

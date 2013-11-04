@@ -10,7 +10,7 @@ class StateTest < ActiveSupport::TestCase
       44 => 1011,
       33 => 1001,
     }
-    dump = {elo_ratings: elos}
+    dump = {'elo_ratings' => elos}
 
     state = State.load(dump)
 

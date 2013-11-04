@@ -4,7 +4,7 @@ module PlayersHelper
   end
 
   def sparkline_data_for(player)
-    recorded_values = player.results.in_order.map(&:previous_state).map{|state| state[:elo_ratings].fetch(player.id){ nil } }
+    recorded_values = player.results.in_order.map(&:previous_state).map{|state| state['elo_ratings'].fetch(player.id){ nil } }
     values = recorded_values + [player.elo_rating]
     values.map{|v| v ? v - sparkline_central_value : 0 }.join(',')
   end
@@ -24,12 +24,12 @@ module PlayersHelper
   private
 
   def min_elo_value
-    min = Result.all.map{|r| r.previous_state.fetch(:elo_ratings){ {} }.values.compact.min || sparkline_central_value }.min
+    min = Result.all.map{|r| r.previous_state.fetch('elo_ratings'){ {} }.values.compact.min || sparkline_central_value }.min
     min ? min - sparkline_central_value : sparkline_central_value
   end
 
   def max_elo_value
-    max = Result.all.map{|r| r.previous_state.fetch(:elo_ratings){ {} }.values.compact.max || sparkline_central_value }.max
+    max = Result.all.map{|r| r.previous_state.fetch('elo_ratings'){ {} }.values.compact.max || sparkline_central_value }.max
     max ? max - sparkline_central_value : sparkline_central_value
   end
 end
