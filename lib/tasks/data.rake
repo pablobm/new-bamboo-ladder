@@ -1,5 +1,10 @@
 namespace :data do
 
+  desc "Replay all results"
+  task replay: :environment do
+    Replayer.instance.replay_all!
+  end
+
   desc "Check for duplicates"
   task dupes: :environment do
     delete = ENV['DELETE'].present?
