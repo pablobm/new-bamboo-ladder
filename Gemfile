@@ -32,6 +32,7 @@ gem 'omniauth-google-oauth2'
 gem 'elo'
 gem 'pg'
 gem 'figaro'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'capybara'
