@@ -11,5 +11,9 @@ class Player < ActiveRecord::Base
     self.order('name ASC')
   end
 
+  def results
+    Result.where('winner_id = ? OR loser_id = ?', self.id, self.id).in_order
+  end
+
 
 end

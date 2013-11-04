@@ -24,6 +24,10 @@ class EloRating
     end
   end
 
+  def initial_rating
+    @initial_rating ||= Elo::Player.new.rating
+  end
+
 
   private
 
@@ -78,10 +82,6 @@ class EloRating
 
   def ensure_rating(player)
     player.elo_rating = initial_rating if player.elo_rating.nil?
-  end
-
-  def initial_rating
-    @initial_rating ||= Elo::Player.new.rating
   end
 
 end

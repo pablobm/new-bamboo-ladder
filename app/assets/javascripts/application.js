@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require turbolinks
+//= require jquery.peity
 //= require_tree .
 //= require_tree ../modules
