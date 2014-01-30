@@ -4,7 +4,7 @@ LadderApp::Application.routes.draw do
   match '/auth/:provider/callback', to: 'sessions#create', via: %w{get post}
 
   resource :home, only: [:show]
-  resources :players, only: [:index]
+  resources :players, only: [:index, :create, :new]
   resources :results, only: [:index, :create, :destroy] do
     collection do
       get :undo

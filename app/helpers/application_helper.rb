@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def current_if_section(section)
-    section == controller.controller_name ? 'is-current' : ''
+  def current_if_section(hsh)
+    current_page?(hsh) ? 'is-current' : ''
   end
 end

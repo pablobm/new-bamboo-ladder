@@ -10,9 +10,10 @@
 <body><div id="body" class="wait-for-load">
 
 <div id="navbar"><div class="l-inside"><div id="navbar-inside">
-  <p class="link ladder-link <%= current_if_section 'players' %>"><%= link_to "Ladder", players_path %></p>
-  <p class="link results-link <%= current_if_section 'results' %>"><%= link_to "Past results", results_path %></p>
+  <p class="link ladder-link <%= current_if_section(controller: 'players', action: 'index') %>"><%= link_to "Ladder", players_path %></p>
+  <p class="link results-link <%= current_if_section(controller: 'results') %>"><%= link_to "Past results", results_path %></p>
   <% if user_can_enter_results? %>
+    <p class="link player-form-link <%= current_if_section(controller: 'players', action: 'new') %>"><%= link_to "New player", new_player_path %></p>
     <p class="link result-form-link"><%= link_to "New result", '#' %></p>
   <% end %>
 </div></div></div>
