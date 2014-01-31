@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def user_can_enter_results?
+  def trusted_user?
     Figaro.env.trusted_ips.split(',').include?(request.remote_ip)
   end
-  helper_method :user_can_enter_results?
+  helper_method :trusted_user?
 
   def prepare_new_result_form
     @result = Result.new
@@ -29,6 +29,10 @@ class ApplicationController < ActionController::Base
     end
     flash[:messages] ||= []
     flash[:messages] << opts.merge({_type_: mtype})
+  end
+
+  def authenticate
+    render text: "These aren't the droids you're looking for...", status: :forbidden unless trusted_user?
   end
 
 end
