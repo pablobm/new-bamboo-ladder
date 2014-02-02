@@ -19,11 +19,12 @@ pablo
 lee
 EOL
 
-User.update_all(position: nil)
+Player.update_all(position: nil)
 INITIAL_LADDER.split.each_with_index do |name, i|
-  user = User.where(email: "#{name}@new-bamboo.co.uk").first_or_initialize
-  user.name ||= name.humanize
-  user.position = i
-  pp user
-  user.save!
+  player = Player.where(name: name).first_or_initialize
+  player.name ||= name.humanize
+  player.position = i
+  player.elo_rating = EloRating.instance.initial_rating
+  pp player
+  player.save!
 end
