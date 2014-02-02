@@ -1,0 +1,7 @@
+<div class="new-player">
+  <%= form_for(@player) do |f| %>
+    <h3>Add new Player</h3>
+    <p><%= f.label :name %><%= f.text_field :name %></p>
+    <p><%= f.submit "Add" %></p>
+  <% end %>
+</div>

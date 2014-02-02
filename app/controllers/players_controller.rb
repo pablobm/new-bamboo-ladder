@@ -12,10 +12,6 @@ class PlayersController < ApplicationController
     respond_with @player, location: players_path
   end
 
-  def new
-    @player = Player.new(params[:player])
-    respond_with @player
-  end
 
   private
 

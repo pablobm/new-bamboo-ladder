@@ -48,6 +48,9 @@ body {
     border-left: 1px solid white;
     text-align: center;
   }
+  .link.settings span {
+    display: none;
+  }
   .link:last-child {
     border-right: 1px solid white;
   }
