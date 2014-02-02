@@ -10,17 +10,18 @@
 <body><div id="body" class="wait-for-load">
 
 <div id="navbar"><div class="l-inside"><div id="navbar-inside">
-  <p class="link ladder-link <%= current_if_section 'players' %>"><%= link_to "Ladder", players_path %></p>
-  <p class="link results-link <%= current_if_section 'results' %>"><%= link_to "Past results", results_path %></p>
-  <% if user_can_enter_results? %>
+  <p class="link ladder-link <%= current_if_section(controller: 'players', action: 'index') %>"><%= link_to "Ladder", players_path %></p>
+  <p class="link results-link <%= current_if_section(controller: 'results') %>"><%= link_to "Past results", results_path %></p>
+  <% if trusted_user? %>
     <p class="link result-form-link"><%= link_to "New result", '#' %></p>
+    <p class="link settings"><%= link_to_settings %></p>
   <% end %>
 </div></div></div>
 
 <%= render_flash %>
 
 <div id="content"><div class="l-inside">
-  <% if user_can_enter_results? %>
+  <% if trusted_user? %>
     <%= render 'layouts/result_form' %>
   <% end %>
   <%= yield %>

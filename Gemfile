@@ -33,6 +33,7 @@ gem 'elo'
 gem 'pg'
 gem 'figaro'
 gem 'newrelic_rpm'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'capybara'

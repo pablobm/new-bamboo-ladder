@@ -51,6 +51,8 @@ GEM
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
+    font-awesome-sass (4.0.2)
+      sass-rails (>= 3.1.1)
     hashie (1.2.0)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -159,6 +161,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   elo
   figaro
+  font-awesome-sass
   jbuilder (~> 1.2)
   jquery-rails
   launchy
