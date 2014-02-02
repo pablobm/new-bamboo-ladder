@@ -4,7 +4,7 @@ module PlayersHelper
   end
 
   def sparkline_data_for(player)
-    recorded_values = player.results.in_order.map(&:previous_state).map{|state| state['elo_ratings'].fetch(player.id){ nil } }
+    recorded_values = player.results.in_order.last(50).map(&:previous_state).map{|state| state['elo_ratings'].fetch(player.id){ nil } }
     values = recorded_values + [player.elo_rating]
     values.map{|v| v ? v - sparkline_central_value : 0 }.join(',')
   end
