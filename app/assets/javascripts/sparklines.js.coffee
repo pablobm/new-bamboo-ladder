@@ -5,3 +5,4 @@ run = ->
   $('.sparkline').peity('line', {min, max, height, width: 100})
 
 jQuery(run)
+$(document).on('page:load', run)
