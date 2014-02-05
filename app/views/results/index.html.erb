@@ -3,3 +3,4 @@
     <li><%= result.winner.name %> beat <%= result.loser.name %></li>
   <% end %>
 </ol>
+<%= paginate @results, remote: true %>

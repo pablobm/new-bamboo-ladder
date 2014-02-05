@@ -2,7 +2,7 @@ class ResultsController < ApplicationController
   before_action :authenticate, only: [:create, :undo, :destroy]
 
   def index
-    @results = Result.latest_first
+    @results = Result.latest_first.page(params[:page]).per(params[:per_page])
   end
 
   def create

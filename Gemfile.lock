@@ -66,6 +66,9 @@ GEM
     json (1.8.0)
     jwt (0.1.6)
       multi_json (>= 1.0)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.2.0)
       addressable (~> 2.3)
     mail (2.5.4)
@@ -74,7 +77,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.1)
     minitest (4.7.5)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     multipart-post (1.2.0)
     newrelic_rpm (3.6.7.159)
     nokogiri (1.6.0)
@@ -164,6 +167,7 @@ DEPENDENCIES
   font-awesome-sass
   jbuilder (~> 1.2)
   jquery-rails
+  kaminari
   launchy
   newrelic_rpm
   omniauth
