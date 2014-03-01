@@ -72,3 +72,16 @@ body {
     }
   }
 }
+.pagination {
+  text-align: right;
+  > * {
+    display: inline-block;
+    min-width: 20px;
+    padding: 0 2px;
+    text-align: center;
+  }
+  a {
+    color: black;
+    text-decoration: none;
+  }
+}

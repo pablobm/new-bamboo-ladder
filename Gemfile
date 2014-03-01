@@ -34,6 +34,7 @@ gem 'pg'
 gem 'figaro'
 gem 'newrelic_rpm'
 gem 'font-awesome-sass'
+gem 'kaminari'
 
 group :development, :test do
   gem 'capybara'
