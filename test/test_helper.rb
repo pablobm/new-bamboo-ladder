@@ -14,10 +14,6 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
-def random_str(length = 8)
-  (0...(length-1)).map{ ('a'..'z').to_a[rand(26)] }.join
-end
-
 #
 # Rails
 #
