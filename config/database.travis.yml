@@ -1,0 +1,7 @@
+test:
+  adapter: postgresql
+  database: ladder_test
+  username: postgres
+  password:
+  host: localhost
+  encoding: utf8
