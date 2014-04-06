@@ -1,4 +1,11 @@
 language: ruby
+addons:
+  postgresql: '9.2' # Heroku's Postgres version.
+before_install:
+  - cp config/application.yml{.example,}
+  - cp config/database{.travis,}.yml
+before_script:
+  - psql -c 'create database ladder_test;' -U postgres
+cache: bundler
 rvm:
   - 2.0.0
-
