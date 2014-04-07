@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 
-gem 'rails', '4.0.3'
+gem 'rails', '4.0.4'
 
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails'
 gem 'elo'
 gem 'figaro'
 gem 'font-awesome-sass'
@@ -14,7 +14,7 @@ gem 'newrelic_rpm'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'pg'
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '>= 4.0.2' # https://github.com/rails/sass-rails/issues/191
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
