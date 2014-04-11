@@ -10,6 +10,6 @@
     </div>
   </div>
   <div class="submit">
-    <p><%= f.submit "May the ladder update!" %></p>
+    <p><%= f.submit "May the ladder update!", data: { 'disable-with' => 'Updating&hellip;'.html_safe } %></p>
   </div>
 <% end %>
