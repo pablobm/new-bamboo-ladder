@@ -1,0 +1,17 @@
+<h3><%= @player.name %></h3>
+<dl>
+  <dt>Position</dt>
+  <dd><%= @player.position %></dd>
+  <dt>ELO Rating</dt>
+  <dd><%= @player.elo_rating %></dd>
+  <dt>Games played</dt>
+  <dd><%= @player.results.count %></dt>
+</dl>
+
+<ol class="results">
+  <% @player.results.latest_first.page(1).each do |result| %>
+    <li><%= result.winner.name %> beat <%= result.loser.name %></li>
+  <% end %>
+</ol>
+
+<%= button_to 'Remove player', player_path(@player), method: :delete, data: { confirm: "Are you sure you want to remove #{@player.name} from the ladder?" } %>

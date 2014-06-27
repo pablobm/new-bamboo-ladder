@@ -1,6 +1,6 @@
 module PlayersHelper
   def players_as_options
-    ['---'] + Player.alphabetical.map{|e| [e.name, e.id] }
+    ['---'] + Player.active.alphabetical.map{|e| [e.name, e.id] }
   end
 
   def sparkline_data_for(player)

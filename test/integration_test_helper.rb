@@ -26,22 +26,36 @@ def assert_not_ranked(name)
 end
 
 def ranking_of(name)
-  ranking_names.find do |ranking, names|
-    names.include?(name)
-  end.try(:first)
+  results_by_name.fetch(name, {})[:ranking]
 end
 
-def ranking_names
+def results_by_name
   previous_ranking = 0
   all('.rankings-entry').inject({}) do |memo, entry|
     name = entry.find('.rankings-name').text
     ranking = entry.find('.rankings-position').text.to_i
+    elo = entry.find('.rankings-elo').text.to_i
     if ranking < previous_ranking
       flunk "WUT? Player #{name}'s position is not consistent with its position on the list"
     end
     previous_ranking = ranking
-    memo[ranking] ||= []
-    memo[ranking] << name
+    memo[name] = { ranking: ranking, elo: elo }
     memo
   end
+end
+
+def assert_elos(name1, operator, name2)
+  assert_operator elo_of(name2), operator, elo_of(name1)
+end
+
+def assert_elo(name, score)
+  assert_equal score, elo_of(name)
+end
+
+def assert_not_scored(name)
+  assert_nil elo_of(name)
+end
+
+def elo_of(name)
+  results_by_name.fetch(name, {})[:elo]
 end

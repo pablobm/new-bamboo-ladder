@@ -8,11 +8,27 @@ body {
   line-height: 2.25em;  /* 16px * 2.25em = 36px */
   font-family: Helvetica, 'bitstream vera sans serif', 'lucida grande', Arial, sans-serif;
 }
-h1, h2, p, ul, ol, dl, table {
+p, ul, ol, dl, table {
   margin-bottom: 1.5em;
 }
-p, li {
+h1, h2, h3 {
+  font-size: 3em;
+  line-height: 1.4;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+p, li, dl {
   font-size: 1.5em; /* 16px * 1.5em = 24px */
+}
+
+dt {
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  margin-right: 1em;
+  &:after {
+    content: ':';
+  }
 }
 
 body {

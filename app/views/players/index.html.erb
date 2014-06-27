@@ -2,7 +2,7 @@
   <% @players.each do |player| %>
     <li class="rankings-entry">
       <span class="rankings-position"><%= player.position %>.</span>
-      <span class="rankings-name"><%= player.name %></span>
+      <%= link_to player.name, player, class: 'rankings-name' %>
       <span class="rankings-elo"><%= player.elo_rating %></span>
       <span class="sparkline"><%= sparkline_data_for(player) %></span>
     </li>

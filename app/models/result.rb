@@ -6,6 +6,7 @@ class Result < ActiveRecord::Base
   validates :winner, presence: true
   validates :loser, presence: true
   validate :winner_different_from_loser
+  validate :players_active, on: :create
 
   serialize :previous_state, Hash
 
@@ -45,6 +46,10 @@ class Result < ActiveRecord::Base
     if winner_id == loser_id
       errors[:base] << "Winner and loser cannot be the same"
     end
+  end
+
+  def players_active
+    winner.active && loser.active
   end
 
 end

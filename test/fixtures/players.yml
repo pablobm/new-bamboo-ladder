@@ -22,3 +22,8 @@ erin:
   name: Erin
   elo_rating:  980
   position: 5
+
+casper:
+  name: Casper
+  elo_rating: 1000
+  removed_at: '2014-06-27'

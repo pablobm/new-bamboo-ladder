@@ -16,6 +16,14 @@
     font-family: Georgia, sans-serif;
     color: $color-text-subdued;
   }
+  .rankings-name {
+    font-weight: bold;
+    color: $color-text;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
   .rankings-elo {
     display: block;
     position: absolute;

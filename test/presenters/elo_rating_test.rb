@@ -40,4 +40,22 @@ class EloRatingTest < ActiveSupport::TestCase
     assert_not_nil bob.position
   end
 
+  test '#recalculate_positions does not position inactive players' do
+    bob = players(:bob)
+    carol = players(:carol)
+    erin = players(:erin)
+
+    assert_equal 2, bob.position
+    assert_equal 3, carol.position
+    assert_equal 5, erin.position
+
+    carol.remove
+
+    elo.recalculate_positions
+
+    assert_equal 2, bob.reload.position
+    assert_equal nil, carol.reload.position
+    assert_equal 4, erin.reload.position
+  end
+
 end
