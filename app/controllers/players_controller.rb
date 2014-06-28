@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :authenticate, only: [:create, :new, :show, :destroy]
+  before_action :authenticate, only: [:create, :new, :destroy]
   respond_to :html
 
   def index

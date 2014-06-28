@@ -14,4 +14,6 @@
   <% end %>
 </ol>
 
-<%= button_to 'Remove player', player_path(@player), method: :delete, data: { confirm: "Are you sure you want to remove #{@player.name} from the ladder?" } %>
+<% if trusted_user? %>
+  <%= button_to 'Remove player', player_path(@player), method: :delete, data: { confirm: "Are you sure you want to remove #{@player.name} from the ladder?" } %>
+<% end %>
