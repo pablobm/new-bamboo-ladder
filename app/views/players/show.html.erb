@@ -10,6 +10,7 @@
   <dd><%= @player.won_results.count %></dt>
 </dl>
 
+<h4>Recent results</h4>
 <ol class="results">
   <% @player.results.latest_first.page(1).each do |result| %>
     <li><%= result.winner.name %> beat <%= result.loser.name %></li>
