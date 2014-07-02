@@ -1,5 +1,8 @@
 class Player < ActiveRecord::Base
 
+  has_many :won_results, class_name: 'Result', foreign_key: 'winner_id'
+  has_many :lost_results, class_name: 'Result', foreign_key: 'loser_id'
+
   scope :active, -> { where(removed_at: nil) }
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
