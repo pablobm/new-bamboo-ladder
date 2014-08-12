@@ -17,6 +17,11 @@ class Result < ActiveRecord::Base
     self.order('created_at DESC, id DESC')
   end
 
+  def self.participant_ids
+    all.map{|r| [r.winner_id, r.loser_id] }.flatten.uniq
+  end
+
+
   def winner_name
     winner.try(:name)
   end

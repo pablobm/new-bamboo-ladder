@@ -17,6 +17,7 @@ gem 'pg'
 gem 'sass-rails', '>= 4.0.2' # https://github.com/rails/sass-rails/issues/191
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+gem 'timecop'
 
 group :development, :test do
   gem 'capybara'
