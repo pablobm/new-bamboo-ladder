@@ -8,8 +8,6 @@ class Result < ActiveRecord::Base
   validate :winner_different_from_loser
   validate :players_active, on: :create
 
-  serialize :previous_state, Hash
-
   def self.in_order
     self.order('created_at ASC, id ASC')
   end
@@ -37,6 +35,14 @@ class Result < ActiveRecord::Base
 
   def loser_new_position
     loser.try(:position)
+  end
+
+  def previous_state
+    State.load(self.raw_previous_state)
+  end
+
+  def previous_state=(state)
+    self.raw_previous_state = state.as_json
   end
 
 

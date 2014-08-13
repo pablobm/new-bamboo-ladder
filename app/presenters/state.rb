@@ -3,46 +3,44 @@ class State
   attr_reader :players
 
   def self.dump
-    elo_ratings = {}
-    positions = {}
-    ::Player.all.each do |p|
-      elo_ratings[p.id] = p.elo_rating
-      positions[p.id] = p.position
-    end
-    {'elo_ratings' => elo_ratings, 'positions' => positions}
+    players = ::Player.all.map{|p| State::Player.new(p.id, p.elo_rating, p.active).as_json }
+    { 'players' => players }
   end
 
-  def self.load(dump)
-    # calculate positions if not present (older states don't have positions)
-    dump['positions'] = positions_from_elos(dump['elo_ratings']) if !dump.key?('positions')
-
-    elos = dump.fetch('elo_ratings', {})
-    positions = dump.fetch('positions', {})
-    non_positioned, positioned = positions.partition { |_, pos| pos.nil? }
-    players = (positioned + non_positioned).map { |uid, position| Player.new(uid, elos[uid], position) }
-    new(players)
+  def self.load(raw_dump)
+    players = raw_dump['players'].map{|hsh| State::Player.new_from_hash(hsh) }
+    new(players: players)
   end
+
+  def self.rating_history_for(player)
+    player_history = latest_states_for(player).map{|state| state.find_player_by_id(player.id) }
+    player_history.map(&:elo_rating) + [player.elo_rating]
+  end
+
+  def self.latest_states_for(player)
+    player.results.latest_first.limit(50).map(&:previous_state)
+  end
+
+  def self.max_historic_elo_value
+    Result.select(%{json_array_elements(raw_previous_state->'players')->'elo_rating' AS elo_rating}).map(&:elo_rating).max
+  end
+
+  def find_player_by_id(player_id)
+    @players.find{|p| p['id'] == player_id }
+  end
+
 
   private
 
-  def self.positions_from_elos(elos)
-    positions = {}
-    position = 1
-    previous_elo = nil
-    non_rated, rated = elos.partition{|_, elo| elo.nil? }
-    rated.sort_by{|_, elo| -elo }.each_with_index.map do |(uid, elo), i|
-      position = i+1 if previous_elo != elo
-      previous_elo = elo
-      positions[uid] = position
-    end
-    non_rated.each { |uid, _| positions[uid] = nil }
-    positions
+  def initialize(hsh)
+    @players = hsh[:players]
   end
 
-  class Player < Struct.new(:id, :elo_rating, :position); end
-
-  def initialize(players)
-    @players = players
+  class Player < Struct.new(:id, :elo_rating, :active)
+    def self.new_from_hash(hsh)
+      hsh = hsh.stringify_keys
+      new(hsh['id'], hsh['elo_rating'], hsh['active'])
+    end
   end
 
 end

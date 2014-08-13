@@ -10,7 +10,7 @@ class Replayer
 
   def replay_results!
     Result.transaction do
-      Result.update_all(previous_state: nil)
+      Result.update_all(raw_previous_state: nil)
       Player.update_all(elo_rating: nil, position: nil)
       Result.in_order.each do |r|
         r.previous_state = State.dump

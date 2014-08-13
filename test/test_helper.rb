@@ -27,3 +27,11 @@ class CapybaraTestCase < ActionDispatch::IntegrationTest
   end
 end
 
+
+#
+# Helpers
+#
+
+def assert_arrays_match(expected, actual)
+  assert_equal expected.sort, actual.sort
+end

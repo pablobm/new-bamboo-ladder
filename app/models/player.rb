@@ -9,7 +9,7 @@ class Player < ActiveRecord::Base
 
 
   def self.in_elo_order
-    self.where('elo_rating IS NOT NULL').order('elo_rating DESC')
+    self.order('elo_rating IS NOT NULL DESC, elo_rating DESC')
   end
 
   def self.alphabetical
