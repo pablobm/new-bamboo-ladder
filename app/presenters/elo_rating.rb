@@ -13,7 +13,7 @@ class EloRating
       Player.update_all(position: nil)
       result.previous_state.players.each do |p|
         Player.find(p.id).update_attributes!({
-          position:
+          position: p.position,
           elo_rating: p.elo_rating,
         })
       end

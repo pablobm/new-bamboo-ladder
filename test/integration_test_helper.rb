@@ -31,12 +31,10 @@ end
 
 def results_by_name
   previous_ranking = 0
-  pp '======='
   all('.rankings-entry').inject({}) do |memo, entry|
     name = entry.find('.rankings-name').text
     ranking = entry.find('.rankings-position').text.to_i
     elo = entry.find('.rankings-elo').text.to_i
-    pp [name, ranking, elo]
     if ranking < previous_ranking
       flunk "WUT? Player #{name}'s position is not consistent with its position on the list"
     end

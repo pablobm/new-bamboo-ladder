@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
   respond_to :html
 
   def index
-    @players = Player.active.in_order
+    @players = Player.active.ranked.in_order
   end
 
   def create

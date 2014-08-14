@@ -1,9 +1,11 @@
 class State
 
-  attr_reader :players
+  def players
+    @ordered_players
+  end
 
   def self.dump
-    players = ::Player.all.map{|p| State::Player.new(p.id, p.elo_rating, p.active).as_json }
+    players = ::Player.all.map{|p| State::Player.new(p.id, p.elo_rating, p.position, p.active).as_json }
     { 'players' => players }
   end
 
@@ -29,21 +31,17 @@ class State
     @ordered_players.find{|p| p['id'] == player_id }
   end
 
-  def position_for(player)
-    @ordered_players.
-  end
-
 
   private
 
   def initialize(hsh)
-    @ordered_players = hsh[:players].sort_by(&:elo_rating).reverse
+    @ordered_players = hsh[:players].sort_by{|p| -(p.elo_rating || 0) }
   end
 
-  class Player < Struct.new(:id, :elo_rating, :active)
+  class Player < Struct.new(:id, :elo_rating, :position, :active)
     def self.new_from_hash(hsh)
       hsh = hsh.stringify_keys
-      new(hsh['id'], hsh['elo_rating'], hsh['active'])
+      new(hsh['id'], hsh['elo_rating'], hsh['position'], hsh['active'])
     end
   end
 
