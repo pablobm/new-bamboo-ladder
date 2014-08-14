@@ -22,18 +22,22 @@ class State
   end
 
   def self.max_historic_elo_value
-    Result.select(%{json_array_elements(raw_previous_state->'players')->'elo_rating' AS elo_rating}).map(&:elo_rating).max
+    Result.select(%{json_array_elements(raw_previous_state->'players')->'elo_rating' AS elo_rating}).map(&:elo_rating).compact.max
   end
 
   def find_player_by_id(player_id)
-    @players.find{|p| p['id'] == player_id }
+    @ordered_players.find{|p| p['id'] == player_id }
+  end
+
+  def position_for(player)
+    @ordered_players.
   end
 
 
   private
 
   def initialize(hsh)
-    @players = hsh[:players]
+    @ordered_players = hsh[:players].sort_by(&:elo_rating).reverse
   end
 
   class Player < Struct.new(:id, :elo_rating, :active)

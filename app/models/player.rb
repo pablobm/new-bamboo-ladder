@@ -7,9 +7,12 @@ class Player < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
+  def self.in_order
+    self.order('position')
+  end
 
   def self.in_elo_order
-    self.order('elo_rating IS NOT NULL DESC, elo_rating DESC')
+    self.where('elo_rating IS NOT NULL').order('elo_rating DESC')
   end
 
   def self.alphabetical
