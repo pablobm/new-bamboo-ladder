@@ -10,7 +10,6 @@ class EloRating
 
   def undo(result)
     Player.transaction do
-      Player.update_all(position: nil)
       result.previous_state.players.each do |p|
         Player.find(p.id).update_attributes!({
           position: p.position,
