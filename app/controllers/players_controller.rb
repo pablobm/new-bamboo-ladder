@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :authenticate, only: [:create, :new]
+  before_action :authenticate, only: :create
   respond_to :html
 
   def index
@@ -11,7 +11,6 @@ class PlayersController < ApplicationController
     EloRating.instance.recalculate_positions
     respond_with @player, location: players_path
   end
-
 
   private
 

@@ -23,13 +23,19 @@ module PlayersHelper
 
   private
 
+  def previous_scores
+    @previous_scores ||= Result.all.flat_map { |result|
+      result.previous_state.fetch('elo_ratings', {}).values.compact
+    }
+  end
+
   def min_elo_value
-    min = Result.all.map{|r| r.previous_state.fetch('elo_ratings'){ {} }.values.compact.min || sparkline_central_value }.min
+    min = previous_scores.min
     min ? min - sparkline_central_value : sparkline_central_value
   end
 
   def max_elo_value
-    max = Result.all.map{|r| r.previous_state.fetch('elo_ratings'){ {} }.values.compact.max || sparkline_central_value }.max
+    max = previous_scores.max
     max ? max - sparkline_central_value : sparkline_central_value
   end
 end
