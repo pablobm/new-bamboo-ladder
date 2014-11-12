@@ -9,7 +9,17 @@ class ApplicationController < ActionController::Base
   protected
 
   def trusted_user?
-    Figaro.env.trusted_ips.split(',').include?(request.remote_ip)
+    trusted_ips = ENV['TRUSTED_IPS']
+    if trusted_ips.nil?
+      return true
+    end
+
+    trusted = trusted_ips.split(',')
+    if trusted.count == 1 && trusted.first == '*'
+      true
+    else
+      trusted.include?(request.remote_ip)
+    end
   end
   helper_method :trusted_user?
 
