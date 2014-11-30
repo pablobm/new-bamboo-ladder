@@ -1,2 +1,7 @@
-# IP addresses from where you are allowed to enter new results.
+# IP addresses from where you are allowed to enter new results,
+# comma-separated
+# Enter '*' if any IP address is allowed
+# TRUSTED_IPS: *
+# TRUSTED_IPS: 127.0.0.1
+# TRUSTED_IPS: 1.2.3.4,2.3.4.5
 TRUSTED_IPS: 127.0.0.1

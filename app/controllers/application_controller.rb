@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def trusted_user?
-    Figaro.env.trusted_ips.split(',').include?(request.remote_ip)
+    ClientFilter.trusted?(request.remote_ip)
   end
   helper_method :trusted_user?
 
