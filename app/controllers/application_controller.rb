@@ -9,17 +9,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def trusted_user?
-    trusted_ips = ENV['TRUSTED_IPS']
-    if trusted_ips.nil?
-      return true
-    end
-
-    trusted = trusted_ips.split(',')
-    if trusted.count == 1 && trusted.first == '*'
-      true
-    else
-      trusted.include?(request.remote_ip)
-    end
+    ClientFilter.trusted?(request.remote_ip)
   end
   helper_method :trusted_user?
 
