@@ -8,7 +8,7 @@ class EloRating
     update_players(result.winner, result.loser)
   end
 
-  def undo(result)
+  def resolve_from(result)
     Player.transaction do
       Player.update_all(position: nil)
       state = State.load(result.previous_state)
@@ -18,7 +18,7 @@ class EloRating
           elo_rating: p.elo_rating,
         })
       end
-      Result.where('id > ?', result.id).order('id ASC').each do |r|
+      Result.where('id >= ?', result.id).order('id ASC').each do |r|
         resolve(r)
       end
     end

@@ -45,3 +45,7 @@ def ranking_names
     memo
   end
 end
+
+def reload_page
+  visit current_url
+end

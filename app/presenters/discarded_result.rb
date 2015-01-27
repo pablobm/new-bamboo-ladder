@@ -11,7 +11,7 @@ class DiscardedResult
   def destroy
     Result.transaction do
       @result.destroy
-      EloRating.instance.undo(@result)
+      EloRating.instance.resolve_from(@result)
     end
   end
 
