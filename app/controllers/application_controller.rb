@@ -17,18 +17,15 @@ class ApplicationController < ActionController::Base
     @result = Result.new
   end
 
-  def display_message_now(mtype, opts = {})
+  def display_message_now(opts = {})
     @flash_now ||= {}
     @flash_now[:messages] ||= []
-    @flash_now[:messages] << opts.merge({_type_: mtype})
+    @flash_now[:messages] << opts
   end
 
-  def display_message(mtype, opts = {})
-    unless mtype.kind_of?(Symbol)
-      raise ArgumentError, "Messages type should be a Symbol (got #{mtype.inspect})"
-    end
+  def display_message(opts = {})
     flash[:messages] ||= []
-    flash[:messages] << opts.merge({_type_: mtype})
+    flash[:messages] << opts
   end
 
   def authenticate

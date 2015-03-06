@@ -5,7 +5,11 @@ class Result < ActiveRecord::Base
 
   validates :winner, presence: true
   validates :loser, presence: true
+  validates :winner_current_score, presence: true
+  validates :loser_current_score, presence: true
   validate :winner_different_from_loser
+
+  before_validation :set_current_scores
 
   serialize :previous_state, Hash
 
@@ -45,6 +49,11 @@ class Result < ActiveRecord::Base
     if winner_id == loser_id
       errors[:base] << "Winner and loser cannot be the same"
     end
+  end
+
+  def set_current_scores
+    self.winner_current_score = winner.elo_rating
+    self.loser_current_score = loser.elo_rating
   end
 
 end

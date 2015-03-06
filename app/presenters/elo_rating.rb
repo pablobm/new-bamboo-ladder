@@ -1,11 +1,41 @@
 class EloRating
   include Singleton
 
-  def resolve(result)
-    if first_result_of_week?(result)
+  def resolve(winner_id, loser_id)
+    now = Time.zone.now
+    if first_result_of_week?(now)
+      decay(now)
+    end
+
+    previous_state = State.dump
+
+    points = nil
+
+    Player.transaction do
+      winner = Player.find_by_id!(winner_id)
+      loser = Player.find_by_id!(loser_id)
+      points = update_player_scores(winner, loser)
+      Result.create!(winner_id: winner_id, loser_id: loser_id, previous_state: previous_state)
+    end
+
+    points
+  end
+
+  def resolve_with_result(result)
+    if first_result_of_week?(result.created_at)
       decay(result.created_at)
     end
-    update_players(result.winner, result.loser)
+
+    previous_state = State.dump
+
+    points = nil
+
+    Player.transaction do
+      points = update_player_scores(result.winner, result.loser)
+      result.update_attributes!(previous_state: previous_state)
+    end
+
+    points
   end
 
   def resolve_from(result)
@@ -17,7 +47,7 @@ class EloRating
         })
       end
       Result.where('id >= ?', result.id).order('id ASC').each do |r|
-        resolve(r)
+        resolve_with_result(r)
       end
     end
   end
@@ -30,10 +60,10 @@ class EloRating
 
   INACTION_LIMIT = 4.weeks
 
-  def first_result_of_week?(result)
-    previous = Result.in_order.where('id < ?', result.id).last or return true
+  def first_result_of_week?(now)
+    previous = Result.in_order.where('created_at < ?', now).last or return true
     week_for_previous = previous.created_at.to_date.cweek
-    week_for_current = result.created_at.to_date.cweek
+    week_for_current = now.to_date.cweek
     week_for_previous != week_for_current
   end
 
@@ -41,21 +71,21 @@ class EloRating
     Time.now - INACTION_LIMIT
   end
 
-  def update_players(winner, loser)
-    diff = nil
-    Player.transaction do
-      ensure_rating(loser)
-      ensure_rating(winner)
-      l = Elo::Player.new(rating: loser.elo_rating)
-      w = Elo::Player.new(rating: winner.elo_rating)
-      w.wins_from(l)
-      diff = loser.elo_rating - l.rating
-      loser.elo_rating -= diff
-      loser.save!
-      winner.elo_rating += diff
-      winner.save!
-    end
-    diff
+  def update_player_scores(winner, loser)
+    points_transfered = nil
+
+    ensure_rating(loser)
+    ensure_rating(winner)
+    l = Elo::Player.new(rating: loser.elo_rating)
+    w = Elo::Player.new(rating: winner.elo_rating)
+    w.wins_from(l)
+    points_transfered = loser.elo_rating - l.rating
+    loser.elo_rating -= points_transfered
+    loser.save!
+    winner.elo_rating += points_transfered
+    winner.save!
+
+    points_transfered
   end
 
   def decay(time)

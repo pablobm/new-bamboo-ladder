@@ -14,7 +14,7 @@ class Replayer
       Player.update_all(elo_rating: nil)
       Result.in_order.each do |r|
         r.previous_state = State.dump
-        elo_rating.resolve(r)
+        elo_rating.resolve_with_result(r)
         r.save!
       end
     end

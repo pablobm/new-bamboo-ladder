@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20150306110947) do
     t.text     "previous_state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "winner_current_score"
+    t.integer  "loser_current_score"
   end
 
   create_table "users", force: true do |t|
