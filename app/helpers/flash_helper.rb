@@ -30,7 +30,7 @@ module FlashHelper
         flash_class = (mtype.to_s.camelize + "Flash").constantize
         f = flash_class.new(msg)
         render f.template, f.locals
-      rescue User
+      rescue Exception => e
         raise "I don't know what to do with #{msg.inspect}"
       end
     end.join

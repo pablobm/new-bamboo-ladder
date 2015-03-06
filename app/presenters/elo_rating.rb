@@ -10,11 +10,9 @@ class EloRating
 
   def resolve_from(result)
     Player.transaction do
-      Player.update_all(position: nil)
       state = State.load(result.previous_state)
       state.players.each do |p|
         Player.find(p.id).update_attributes!({
-          position: p.position,
           elo_rating: p.elo_rating,
         })
       end
@@ -26,20 +24,6 @@ class EloRating
 
   def initial_rating
     @initial_rating ||= Elo::Player.new.rating
-  end
-
-  def recalculate_positions
-    Player.transaction do
-      last_rating = nil
-      last_position = nil
-      Player.in_elo_order.to_enum.with_index.map do |player, i|
-        expected_position = i+1
-        position = (last_rating == player.elo_rating) ? last_position : expected_position
-        last_rating = player.elo_rating
-        last_position = position
-        player.update_attributes(position: position)
-      end
-    end
   end
 
   private
@@ -70,8 +54,6 @@ class EloRating
       loser.save!
       winner.elo_rating += diff
       winner.save!
-
-      recalculate_positions
     end
     diff
   end

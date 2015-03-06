@@ -31,13 +31,11 @@ class EloRatingTest < ActiveSupport::TestCase
     bob = players(:bob)
     erin = players(:erin)
     bob.update_attribute(:elo_rating, nil)
-    bob.update_attribute(:position, nil)
 
     resolve(bob, erin)
     bob.reload
 
     assert_not_nil bob.elo_rating
-    assert_not_nil bob.position
   end
 
 end

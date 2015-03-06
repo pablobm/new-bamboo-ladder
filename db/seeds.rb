@@ -19,11 +19,9 @@ pablo
 lee
 EOL
 
-Player.update_all(position: nil)
-INITIAL_LADDER.split.each_with_index do |name, i|
+INITIAL_LADDER.split.each do |name|
   player = Player.where(name: name).first_or_initialize
   player.name ||= name.humanize
-  player.position = i
   player.elo_rating = EloRating.instance.initial_rating
   pp player
   player.save!

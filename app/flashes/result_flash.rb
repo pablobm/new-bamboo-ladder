@@ -15,27 +15,45 @@ class ResultFlash
   end
 
   def locals
-    {result: @result, phrases: phrases}
+    {winner_position: winner_position, loser_position: loser_position, phrases: phrases}
   end
 
 
   private
 
+  attr_reader :result
+
   def phrases
-    winner_new_ordinal = h.ordinal_position(@result.winner)
-    loser_new_ordinal = h.ordinal_position(@result.loser)
+    winner_new_ordinal = ordinal_position(winner_position)
+    loser_new_ordinal = ordinal_position(loser_position)
     {
-      winner: %{#{@result.winner_name} secures <span class="figure">#{winner_new_ordinal}</span> place}.html_safe,
-      loser:  %{leaving #{@result.loser_name} <span class="figure">#{loser_new_ordinal}</span>}.html_safe,
+      winner: %{#{result.winner_name} secures <span class="figure">#{winner_new_ordinal}</span> place}.html_safe,
+      loser:  %{leaving #{result.loser_name} <span class="figure">#{loser_new_ordinal}</span>}.html_safe,
       points: %{Points transferred: <span class="figure">#{@points}</span>}.html_safe,
     }
   end
 
-  def h
-    @h ||= begin
-      ret = Object.new
-      ret.extend PositionHelper
-      ret
+  def ordinal_position(position)
+    ActiveSupport::Inflector.ordinalize(position)
+  end
+
+  def winner_position
+    player_positions[result.winner.id]
+  end
+
+  def loser_position
+    player_positions[result.loser.id]
+  end
+
+  def player_positions
+    @player_positions ||= begin
+      Player.in_elo_order.each_with_index.each_with_object({}) do |(player, position), memo|
+        if player.id == result.winner.id || player.id == result.loser.id
+          memo[player.id] = position + 1
+        else
+          memo
+        end
+      end
     end
   end
 
