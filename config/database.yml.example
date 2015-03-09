@@ -1,7 +1,7 @@
 development: &DEFAULTS
   adapter: postgresql
-  database: ladder_devel
-  username: pablobm
+  database: ladder_dev
+  username:
   password:
   host: 127.0.0.1
   encoding: utf8
