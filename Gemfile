@@ -23,6 +23,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'timecop'
+  gem 'byebug'
 end
 
 group :production do

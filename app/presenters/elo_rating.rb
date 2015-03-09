@@ -53,8 +53,8 @@ class EloRating
     week_for_previous != week_for_current
   end
 
-  def dormancy_threshold
-    Time.now - INACTION_LIMIT
+  def dormancy_threshold(time)
+    time - INACTION_LIMIT
   end
 
   def update_players(winner, loser)
@@ -78,10 +78,11 @@ class EloRating
 
   def decay(time)
     ever_played_ids = Result.where('created_at < ?', time).participant_ids
-    inactive_ids = Player.pluck(:id) - ever_played_ids
-    active_ids = Result.where('? < created_at AND created_at < ?', dormancy_threshold, time).participant_ids
-    dormant_ids = Player.where('id NOT IN (?)', active_ids).pluck(:id) - inactive_ids
-    if Result.where('created_at < ?', dormancy_threshold).exists? && dormant_ids.any?
+    active_ids = Result.where('? < created_at AND created_at < ?', dormancy_threshold(time), time).participant_ids
+
+    dormant_ids = ever_played_ids - active_ids
+
+    if dormant_ids.any?
       Player.where('id IN (?)', active_ids).update_all("elo_rating = elo_rating + #{dormant_ids.count.to_i}")
       Player.where('id IN (?)', dormant_ids).update_all("elo_rating = elo_rating - #{active_ids.count.to_i}")
     end
