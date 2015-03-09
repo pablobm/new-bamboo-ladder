@@ -1,1 +1,0 @@
-require 'position_formatting'

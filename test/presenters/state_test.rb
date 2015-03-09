@@ -15,14 +15,9 @@ class StateTest < ActiveSupport::TestCase
     state = State.load(dump)
 
     rs = state.players
-    assert_equal rs[0].position, 1
     assert_equal rs[0].elo_rating, 1111
     assert_equal rs[0].id, 22
 
-    assert_equal rs[1].position, 2
-    assert_equal rs[2].position, 2
-
-    assert_equal rs[4].position, 5
     assert_equal rs[4].elo_rating, 1000
     assert_equal rs[4].id, 11
   end
@@ -30,7 +25,6 @@ class StateTest < ActiveSupport::TestCase
   test "it doesn't complain when players have no rating" do
     players(:erin).update_attributes({
       elo_rating: nil,
-      position: nil,
     })
 
     dump1 = State.dump

@@ -15,16 +15,16 @@ class ReplayerTest < ActiveSupport::TestCase
     erin = players(:erin)
     erin.update_attributes!(elo_rating: nil)
 
-    NewResult.create!(winner_id: alice.id, loser_id: bob.id)
-    NewResult.create!(winner_id: carol.id, loser_id: dan.id)
+    EloRating.instance.resolve(alice.id, bob.id)
+    EloRating.instance.resolve(carol.id, dan.id)
 
     Timecop.travel(3.weeks)
-    NewResult.create!(winner_id: alice.id, loser_id: carol.id)
-    NewResult.create!(winner_id: bob.id, loser_id: dan.id)
+    EloRating.instance.resolve(alice.id, carol.id)
+    EloRating.instance.resolve(bob.id, dan.id)
 
     Timecop.travel(3.weeks)
-    NewResult.create!(winner_id: alice.id, loser_id: dan.id)
-    NewResult.create!(winner_id: bob.id, loser_id: carol.id)
+    EloRating.instance.resolve(alice.id, dan.id)
+    EloRating.instance.resolve(bob.id, carol.id)
 
     alice.reload
     alice_rating = alice.elo_rating

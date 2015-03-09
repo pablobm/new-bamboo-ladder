@@ -6,8 +6,8 @@ class ResultsController < ApplicationController
   end
 
   def create
-    result = NewResult.create!(create_params)
-    display_message(:result, result_id: result.id, points: result.points)
+    points = EloRating.instance.resolve(params[:result][:winner_id], params[:result][:loser_id])
+    display_message(winner_id: params[:result][:winner_id], loser_id: params[:result][:loser_id], points: points)
     redirect_to :back
   end
 
@@ -16,15 +16,8 @@ class ResultsController < ApplicationController
   end
 
   def destroy
-    DiscardedResult.find(params[:id]).destroy
+    DiscardedResult.destroy(params[:id])
     redirect_to root_path, notice: "OK, let's pretend that didn't happen"
-  end
-
-
-  private
-
-  def create_params
-    params.require(:result).permit(:winner_id, :loser_id)
   end
 
 end

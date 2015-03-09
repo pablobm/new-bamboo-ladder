@@ -12,7 +12,7 @@ class NewPlayerTest < CapybaraTestCase
       click_on "Add"
     end
 
-    assert_ranking "Iain", 3
+    assert_ranking "Iain", 4
   end
 
 end

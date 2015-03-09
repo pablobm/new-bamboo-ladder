@@ -1,17 +1,10 @@
 class DiscardedResult
 
-  def initialize(result)
-    @result = result
-  end
-
-  def self.find(id)
-    new(Result.find(id))
-  end
-
-  def destroy
+  def self.destroy(id)
     Result.transaction do
-      @result.destroy
-      EloRating.instance.resolve_from(@result)
+      result = Result.find(id)
+      result.destroy
+      EloRating.instance.resolve_from(result)
     end
   end
 

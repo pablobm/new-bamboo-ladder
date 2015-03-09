@@ -1,25 +1,53 @@
 class EloRating
   include Singleton
 
-  def resolve(result)
-    if first_result_of_week?(result)
+  def resolve(winner_id, loser_id)
+    now = Time.zone.now
+    if first_result_of_week?(now)
+      decay(now)
+    end
+
+    previous_state = State.dump
+
+    points = nil
+
+    Player.transaction do
+      winner = Player.find_by_id!(winner_id)
+      loser = Player.find_by_id!(loser_id)
+      points = update_player_scores(winner, loser)
+      Result.create!(winner_id: winner_id, loser_id: loser_id, previous_state: previous_state)
+    end
+
+    points
+  end
+
+  def resolve_with_result(result)
+    if first_result_of_week?(result.created_at)
       decay(result.created_at)
     end
-    update_players(result.winner, result.loser)
+
+    previous_state = State.dump
+
+    points = nil
+
+    Player.transaction do
+      points = update_player_scores(result.winner, result.loser)
+      result.update_attributes!(previous_state: previous_state)
+    end
+
+    points
   end
 
   def resolve_from(result)
     Player.transaction do
-      Player.update_all(position: nil)
       state = State.load(result.previous_state)
       state.players.each do |p|
         Player.find(p.id).update_attributes!({
-          position: p.position,
           elo_rating: p.elo_rating,
         })
       end
       Result.where('id >= ?', result.id).order('id ASC').each do |r|
-        resolve(r)
+        resolve_with_result(r)
       end
     end
   end
@@ -28,28 +56,14 @@ class EloRating
     @initial_rating ||= Elo::Player.new.rating
   end
 
-  def recalculate_positions
-    Player.transaction do
-      last_rating = nil
-      last_position = nil
-      Player.in_elo_order.to_enum.with_index.map do |player, i|
-        expected_position = i+1
-        position = (last_rating == player.elo_rating) ? last_position : expected_position
-        last_rating = player.elo_rating
-        last_position = position
-        player.update_attributes(position: position)
-      end
-    end
-  end
-
   private
 
   INACTION_LIMIT = 4.weeks
 
-  def first_result_of_week?(result)
-    previous = Result.in_order.where('id < ?', result.id).last or return true
+  def first_result_of_week?(now)
+    previous = Result.in_order.where('created_at < ?', now).last or return true
     week_for_previous = previous.created_at.to_date.cweek
-    week_for_current = result.created_at.to_date.cweek
+    week_for_current = now.to_date.cweek
     week_for_previous != week_for_current
   end
 
@@ -57,23 +71,21 @@ class EloRating
     time - INACTION_LIMIT
   end
 
-  def update_players(winner, loser)
-    diff = nil
-    Player.transaction do
-      ensure_rating(loser)
-      ensure_rating(winner)
-      l = Elo::Player.new(rating: loser.elo_rating)
-      w = Elo::Player.new(rating: winner.elo_rating)
-      w.wins_from(l)
-      diff = loser.elo_rating - l.rating
-      loser.elo_rating -= diff
-      loser.save!
-      winner.elo_rating += diff
-      winner.save!
+  def update_player_scores(winner, loser)
+    points_transfered = nil
 
-      recalculate_positions
-    end
-    diff
+    ensure_rating(loser)
+    ensure_rating(winner)
+    l = Elo::Player.new(rating: loser.elo_rating)
+    w = Elo::Player.new(rating: winner.elo_rating)
+    w.wins_from(l)
+    points_transfered = loser.elo_rating - l.rating
+    loser.elo_rating -= points_transfered
+    loser.save!
+    winner.elo_rating += points_transfered
+    winner.save!
+
+    points_transfered
   end
 
   def decay(time)

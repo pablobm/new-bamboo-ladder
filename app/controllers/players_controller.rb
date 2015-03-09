@@ -8,7 +8,6 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.create(create_params.merge(elo_rating: EloRating.instance.initial_rating))
-    EloRating.instance.recalculate_positions
     respond_with @player, location: players_path
   end
 
