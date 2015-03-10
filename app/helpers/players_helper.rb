@@ -28,7 +28,7 @@ module PlayersHelper
   end
 
   def last_month_results
-    Result.where('created_at > ?', 1.month.ago)
+    Result.where('created_at > ?', 1.month.ago).order('created_at ASC')
   end
 
   def last_month_scores_by_user
