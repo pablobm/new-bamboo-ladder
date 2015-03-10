@@ -43,8 +43,8 @@ class Result < ActiveRecord::Base
   end
 
   def set_current_scores
-    self.winner_current_score = winner.elo_rating
-    self.loser_current_score = loser.elo_rating
+    self.winner_current_score = winner.reload.elo_rating
+    self.loser_current_score = loser.reload.elo_rating
   end
 
 end
