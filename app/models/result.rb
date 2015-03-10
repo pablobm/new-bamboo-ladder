@@ -34,15 +34,6 @@ class Result < ActiveRecord::Base
     loser.try(:name)
   end
 
-  def winner_new_position
-    winner.try(:position)
-  end
-
-  def loser_new_position
-    loser.try(:position)
-  end
-
-
   private
 
   def winner_different_from_loser
@@ -52,8 +43,8 @@ class Result < ActiveRecord::Base
   end
 
   def set_current_scores
-    self.winner_current_score = winner.elo_rating
-    self.loser_current_score = loser.elo_rating
+    self.winner_current_score = winner.reload.elo_rating
+    self.loser_current_score = loser.reload.elo_rating
   end
 
 end

@@ -21,14 +21,8 @@ module PlayersHelper
 
   private
 
-  def previous_scores
-    @previous_scores ||= Result.all.flat_map { |result|
-      result.previous_state.fetch('elo_ratings', {}).values.compact
-    }
-  end
-
   def last_month_results
-    Result.where('created_at > ?', 1.month.ago)
+    Result.where('created_at > ?', 1.month.ago).order('created_at ASC')
   end
 
   def last_month_scores_by_user
