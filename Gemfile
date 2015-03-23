@@ -18,10 +18,13 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
+  gem 'byebug'
+end
+
+group :test do
   gem 'capybara'
   gem 'launchy'
   gem 'timecop'
-  gem 'byebug'
 end
 
 group :production do
