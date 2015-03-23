@@ -8,4 +8,4 @@ before_script:
   - psql -c 'create database ladder_test;' -U postgres
 cache: bundler
 rvm:
-  - 2.1.2
+  - 2.2.1
