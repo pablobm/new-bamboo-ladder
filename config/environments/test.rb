@@ -36,7 +36,4 @@ LadderApp::Application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  # App-specific settings
-  config.developer_auth = true
 end
