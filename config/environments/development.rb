@@ -27,6 +27,9 @@ LadderApp::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # Raises error for missing translations
+  # config.action_view.raise_on_missing_translations = true
+
   # App-specific settings
   config.developer_auth = true
 end
