@@ -7,7 +7,6 @@
     border-bottom: 1px solid #ccc;
     line-height: 3em;
     list-style: none;
-    text-align: center;
   }
   .rankings-position {
     position: absolute;
@@ -15,6 +14,9 @@
     font-size: 2em;
     font-family: Georgia, sans-serif;
     color: $color-text-subdued;
+  }
+  .rankings-name {
+    margin-left: 8em;
   }
   .rankings-elo {
     display: block;
