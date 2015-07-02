@@ -12,7 +12,5 @@ LadderApp::Application.routes.draw do
     end
   end
 
-  resource :ping, only: [:show]
-
   resource :test, only: [:show]
 end
