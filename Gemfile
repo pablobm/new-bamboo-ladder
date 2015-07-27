@@ -10,7 +10,6 @@ gem 'figaro'
 gem 'font-awesome-sass'
 gem 'jquery-rails'
 gem 'kaminari'
-gem 'newrelic_rpm'
 gem 'pg'
 gem 'puma'
 gem 'sass-rails', '>= 4.0.2' # https://github.com/rails/sass-rails/issues/191
