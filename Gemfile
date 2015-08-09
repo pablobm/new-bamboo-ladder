@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.1'
 
-gem 'rails', '4.0.13'
+gem 'rails', '~> 4.0.13'
 
 gem 'coffee-rails'
 gem 'elo'
