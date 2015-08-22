@@ -1,6 +1,5 @@
 class PlayersController < ApplicationController
   before_action :authenticate, only: :create
-  respond_to :html
 
   def index
     @players = Player.in_elo_order
@@ -8,7 +7,7 @@ class PlayersController < ApplicationController
 
   def create
     @player = Player.create(create_params.merge(elo_rating: EloRating.instance.initial_rating))
-    respond_with @player, location: players_path
+    redirect_to players_path
   end
 
   private
