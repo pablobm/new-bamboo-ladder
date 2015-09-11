@@ -4,7 +4,7 @@ module PlayersHelper
   end
 
   def sparkline_data_for(player)
-    last_month_scores_by_user.fetch(player.id, [player.elo_rating]).map{|v| v ? v - sparkline_central_value : 0 }.join(',')
+    sparkline_scores_by_user.fetch(player.id, [player.elo_rating]).map{|v| v ? v - sparkline_central_value : 0 }.join(',')
   end
 
   def sparkline_max
@@ -21,12 +21,12 @@ module PlayersHelper
 
   private
 
-  def last_month_results
-    Result.where('created_at > ?', 1.month.ago).order('created_at ASC')
+  def sparkline_results
+    Result.where('created_at > ?', 6.months.ago).in_order
   end
 
-  def last_month_scores_by_user
-    @last_month_scores_by_user ||= last_month_results.each_with_object({}) do |result, memo|
+  def sparkline_scores_by_user
+    @sparkline_scores_by_user ||= sparkline_results.each_with_object({}) do |result, memo|
       memo[result.winner_id] ||= []
       memo[result.loser_id] ||= []
       memo[result.winner_id] << result.winner_current_score
@@ -35,12 +35,12 @@ module PlayersHelper
   end
 
   def min_elo_value
-    min = last_month_results.minimum(:loser_current_score)
+    min = sparkline_results.minimum(:loser_current_score)
     min ? min - sparkline_central_value : sparkline_central_value
   end
 
   def max_elo_value
-    max = last_month_results.maximum(:winner_current_score)
+    max = sparkline_results.maximum(:winner_current_score)
     max ? max - sparkline_central_value : sparkline_central_value
   end
 
